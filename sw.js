@@ -1,14 +1,14 @@
 /* Workout Tracker service worker — offline app shell + data.
    Bump CACHE when you change app files to push an update. */
-const CACHE = 'wt-cache-v1';
+const CACHE = 'wt-cache-v2';
 
-const ASSETS = [
+/* Core files the app needs to run offline. */
+const CORE = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.webmanifest',
-  './data/workouts-2026.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
@@ -16,9 +16,27 @@ const ASSETS = [
   './icons/favicon-64.png',
 ];
 
+/* Optional files — cached if present, ignored if missing (e.g. sample data
+   may have been removed before sharing the app). */
+const OPTIONAL = [
+  './data/workouts-2026.json',
+  './data/workouts-extra-2026.json',
+];
+
+/* Cache each asset on its own so one missing/failed file never aborts install. */
+function cacheAll(cache, urls) {
+  return Promise.all(urls.map((url) =>
+    fetch(new Request(url, { cache: 'reload' }))
+      .then((res) => (res && res.ok ? cache.put(url, res) : null))
+      .catch(() => null)
+  ));
+}
+
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE)
+      .then((c) => Promise.all([cacheAll(c, CORE), cacheAll(c, OPTIONAL)]))
+      .then(() => self.skipWaiting())
   );
 });
 
