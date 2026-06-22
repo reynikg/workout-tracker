@@ -1,0 +1,7632 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "date": "2026-01-14",
+      "type": "Back & Bicep & Tricep",
+      "exercises": [
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "45kg",
+                "unit": "kg",
+                "value": 45.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 1 x 10 (35kg) 2 x 10 (45kg)"
+        },
+        {
+          "name": "Chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "45kg",
+                "unit": "kg",
+                "value": 45.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press 3 x 10 (45kg)"
+        },
+        {
+          "name": "Chest press close",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "45kg",
+                "unit": "kg",
+                "value": 45.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press close  x 15 (45kg)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 1 x 10 (20kg)"
+        },
+        {
+          "name": "Straight bar curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Straight bar curls 1 x 10 (12.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-01-15",
+      "type": "Cardio & Tricep & Bicep & Shoulder",
+      "exercises": [
+        {
+          "name": "jumping rope",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 100,
+              "weight": null
+            }
+          ],
+          "raw": "jumping rope 2 x 100"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 2 x 10 (20kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 1 x 6 (no weights) 1 x 10 (no weights)"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 15,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 2 x 15 (5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-01-27",
+      "type": "Cardio & Back & Chest & Bicep & Tricep",
+      "exercises": [
+        {
+          "name": "jumping rope",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 150,
+              "weight": null
+            }
+          ],
+          "raw": "jumping rope 2 x 150"
+        },
+        {
+          "name": "Chest press close",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 30,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press close 2 x 30 (35kg)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 20,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 2 x 20 (35kg)"
+        },
+        {
+          "name": "Chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 20,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "35 kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press 1 x 20 (35kg) 1 x 12 (35 kg)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 1 x 15 (15kg)"
+        },
+        {
+          "name": "Bicep curl bar",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep curl bar 1 x 6 (12.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-05",
+      "type": "Back & Tricep",
+      "exercises": [
+        {
+          "name": "jumping rope",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 150,
+              "weight": null
+            }
+          ],
+          "raw": "jumping rope 2 x 150"
+        },
+        {
+          "name": "Wrist twists",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 20,
+              "weight": {
+                "raw": "4kg",
+                "unit": "kg",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist twists 3 x 20 (4kg)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "40kg",
+                "unit": "kg",
+                "value": 40.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 1 x 15 (35kg) 1 x 10 (40kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": null
+            }
+          ],
+          "raw": "Dips 1 x 10"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 1 x 15 (5kg)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "35kg",
+                "unit": "kg",
+                "value": 35.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 1 x 15 (35kg)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 1 x 10 (20kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-16",
+      "type": "Back and biceps",
+      "exercises": [
+        {
+          "name": "Assisted wide pull ups",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "-42kg assist",
+                "unit": "kg",
+                "value": -42.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 11,
+              "weight": {
+                "raw": "-48 kg assist",
+                "unit": "kg",
+                "value": -48.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Assisted wide pull ups 1 x 10 (-42kg assist) 1 x 11 (-48 kg assist)"
+        },
+        {
+          "name": "Lat pulldowns wide",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pulldowns wide 2 x 10 (50kg)"
+        },
+        {
+          "name": "Rows wide",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows wide 2 x 12 (7 plates)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "3 plates",
+                "unit": "plates",
+                "value": 3.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 2 x 12 (3 plates)"
+        },
+        {
+          "name": "Wrist curl palm up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 11,
+              "weight": {
+                "raw": "8 kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curl palm up 2 x 11 (8 kg)"
+        },
+        {
+          "name": "Wrist curl palm down",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 11,
+              "weight": {
+                "raw": "4kg",
+                "unit": "kg",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curl palm down 2 x 11 (4kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 kgs",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 1 x 10 (10 kgs) 1 x 5 (10kg)"
+        },
+        {
+          "name": "Back extensions",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back extensions 2 x 10 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-17",
+      "type": "Chest",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "48kg",
+                "unit": "kg",
+                "value": 48.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 16,
+              "weight": {
+                "raw": "54kg",
+                "unit": "kg",
+                "value": 54.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "54kg",
+                "unit": "kg",
+                "value": 54.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (48kg) 1 x 16 (54kg) 1 x 12 (54kg)"
+        },
+        {
+          "name": "inclined bench press dumbbells",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 11,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "inclined bench press dumbbells 2 x 10 (15kg) 1 x 11 (15kg)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 6 (78kg) 1 x 8 (78kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-24",
+      "type": "Chest & triceps & shoulders",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 14,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (8 plates) 2 x 14 (10 plates) 1 x 8 (10 plates)"
+        },
+        {
+          "name": "Chest squeeze",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest squeeze 3 x 10 (7 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies  2 x 6 (78kg) 1 x 6 (72kg)"
+        },
+        {
+          "name": "Tricep extensions bar",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions bar 1 x 5 (7 plates) 2 x 10 (6 plates)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "3 plates",
+                "unit": "plates",
+                "value": 3.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 10 (3 plates) 2 x 7 (4 plates)"
+        },
+        {
+          "name": "Chest press-2",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "25kg",
+                "unit": "kg",
+                "value": 25.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press-2 2 x 7 (25kg)"
+        },
+        {
+          "name": "Face pull",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Face pull 1 x 10 (4 plates) 1 x 10 (5 plates) 1 x 12 (6 plates)"
+        },
+        {
+          "name": "Shrugs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Shrugs 2 x 10 (20kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-26",
+      "type": "Back & bicep",
+      "exercises": [
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 1 x 12 (50kg) 2 x 10 (50kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "23kg",
+                "unit": "kg",
+                "value": 23.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 10 (23kg)"
+        },
+        {
+          "name": "Rows narrow",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 9,
+              "weight": {
+                "raw": "43kg",
+                "unit": "kg",
+                "value": 43.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows narrow 1 x 9 (50kg) 2 x 9 (43kg)"
+        },
+        {
+          "name": "Cable pull overs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable pull overs 3 x 10 (6 plates)"
+        },
+        {
+          "name": "bicep curls (D)",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "3 plates",
+                "unit": "plates",
+                "value": 3.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "bicep curls (D) 1 x 10 (4 plates) 1 x 6 (4 plates) 1 x 10 (3 plates)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 1 x 10 (10kg) 2 x 6 (10kg)"
+        },
+        {
+          "name": "Wrist curl palm up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "8 kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curl palm up 2 x 10 (8 kg)  1 x 9 (8kg) 1 x 7 (8kg)"
+        },
+        {
+          "name": "Wrist curl palm down",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curl palm down 1 x 10 (5kg) 1 x 9 (5kg) 1 x 8 (5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-27",
+      "type": "Chest & Tricep & Shoulder",
+      "exercises": [
+        {
+          "name": "Chest press-2",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "25kg",
+                "unit": "kg",
+                "value": 25.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press-2 1 x 10 (20kg) 2 x 10 (25kg)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 10 (72kg) 2 x 8 (72kg)"
+        },
+        {
+          "name": "Inclined bench press dumbbells",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17kg",
+                "unit": "kg",
+                "value": 17.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press dumbbells 2 x 10 (15kg) 1 x 10 (17kg)"
+        },
+        {
+          "name": "Chest press",
+          "sets": [
+            {
+              "sets": null,
+              "reps": null,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press (7 plates)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 10 (no weight)"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "2 plate",
+                "unit": "plates",
+                "value": 2.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "3 plates",
+                "unit": "plates",
+                "value": 3.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 1 x 10 (2 plate) 2 x 10 (3 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-02",
+      "type": "Back & bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 1 x 10 (6 plates) 3 x 10 (8 plates)"
+        },
+        {
+          "name": "Assisted Pull ups",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 9,
+              "weight": {
+                "raw": "-36kg",
+                "unit": "kg",
+                "value": -36.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Assisted Pull ups 3 x 9 (-36kg)"
+        },
+        {
+          "name": "Cable pull overs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable pull overs 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 9,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 3 x 9 (4 plates)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 2 x 8 (10kg)"
+        },
+        {
+          "name": "Wrist twist palm up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 14,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist twist palm up 2 x 10 (8kg) 1 x 14 (8kg)"
+        },
+        {
+          "name": "Wrist twist palm down",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist twist palm down 3 x 10 (6kg)"
+        },
+        {
+          "name": "Dead hang",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 30,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dead hang 3 x 30sec (no weight)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-03",
+      "type": "Chest & Tricep & Shoulder",
+      "exercises": [
+        {
+          "name": "Chest press-2",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "25kg",
+                "unit": "kg",
+                "value": 25.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press-2 1 x 10 (20kg) 2 x 10 (25kg)"
+        },
+        {
+          "name": "Pec fly",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec fly 2 x 10 (72kg) 1 x 8 (72kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 1 x 8 (15kg) 2 x 10 (15kg) 1 x 10 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions bar",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions bar 2 x 10 (7 plates) 1 x 8 (7 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 7 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-05",
+      "type": "Back & bicep",
+      "exercises": [
+        {
+          "name": "Cable pull overs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable pull overs 1 x 10 (6 plates) 1 x 9 (7 plates)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 2 x 10 (8 plates)"
+        },
+        {
+          "name": "EZ bar curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "9.5kg",
+                "unit": "kg",
+                "value": 9.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "EZ bar curls 2 x 8 (9.5kg)"
+        },
+        {
+          "name": "EZ bar reverse curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "8.5kg",
+                "unit": "kg",
+                "value": 8.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "EZ bar reverse curls 2 x 6 (8.5kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 10 (5kg)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 2 x 8 (50kg)"
+        },
+        {
+          "name": "Assisted pull ups narrow",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "-36kg",
+                "unit": "kg",
+                "value": -36.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "-42kg",
+                "unit": "kg",
+                "value": -42.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Assisted pull ups narrow 1 x 8 (-36kg) wide 1 x 8 (-42kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 2 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-09",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lat pull downs 2 x 10 (50kg)"
+        },
+        {
+          "name": "Row",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "36kg",
+                "unit": "kg",
+                "value": 36.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "43kg",
+                "unit": "kg",
+                "value": 43.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Row 1 x 10 (36kg) 1 x 10 (43kg)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 1 x 10 (4 plates) 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Cable bicep curl",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable bicep curl 2 x 8 (6 plates)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 10 (10kg)"
+        },
+        {
+          "name": "One hand rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "23kg",
+                "unit": "kg",
+                "value": 23.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "One hand rows 1 x 6 (30kg) 1 x 10 (23kg)"
+        },
+        {
+          "name": "Dead hang",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 30,
+              "weight": null
+            }
+          ],
+          "raw": "Dead hang 2 x 30sec"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-11",
+      "type": "Chest & Tricep & Shoulder",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (8 plates) 1 x 12 (10 plates) 1 x 12 (11 plates) 1 x 9 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 10 (72kg) 1 x 12 (72kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 1 x 7 (17.5kg) 1 x 8 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 11,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 12 (4 plates) 2 x 11 (4 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 5,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 5 (no weight)"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 15,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 3 x 15 (5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "43kg",
+                "unit": "kg",
+                "value": 43.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 11,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "52kg",
+                "unit": "kg",
+                "value": 52.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lat pull downs 1 x 12 (43kg) 1 x 11 (50kg) 1 x 9 (52kg)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 2 x 12 (7 plates) 1 x 15 (7 plates)"
+        },
+        {
+          "name": "Bicep (D) Curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) Curls 2 x 10 (4 plates) 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Cable pull over",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable pull over 1 x 8 (7 plates) 2 x 7 (7 plates)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 8 (5kg) 2 x 10 (5kg)"
+        },
+        {
+          "name": "Wrist curls palm up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 13,
+              "weight": {
+                "raw": "8kg",
+                "unit": "kg",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm up 2 x 10 (8kg) 1 x 13 (8kg)"
+        },
+        {
+          "name": "Wrist curls palm down",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm down 2 x 10 (6kg) 1 x 12 (6kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 1 x 5 (12.5kg) 1 x 10 (10kg)"
+        },
+        {
+          "name": "Dead hang",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 30,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dead hang 3 x 30sec (no weight)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-17",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 2 x 12 (10 plates) 1 x 10 (10 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "66kg",
+                "unit": "kg",
+                "value": 66.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 8 (72kg) 2 x 6 (66kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 1 x 6 (17.5kg) 2 x 8 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 6,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 3 x 6 (20kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 7,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 7 (no weight)"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 14,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 1 x 10 (10kg) 2 x 14 (10kg)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 15,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 2 x 15 (15kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-18",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "Hip thrusts",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "80kg",
+                "unit": "kg",
+                "value": 80.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hip thrusts 3 x 10 (80kg)"
+        },
+        {
+          "name": "Squad",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Squad 2 x 10 (12.5kg)"
+        },
+        {
+          "name": "Inner thigh open",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thigh open 1 x 12 (60kg) 1 x 8 (60kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 2 x 12 (8 plates)"
+        },
+        {
+          "name": "Lat pull downs wide",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "43kg",
+                "unit": "kg",
+                "value": 43.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs wide 2 x 12 (43kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "23kg",
+                "unit": "kg",
+                "value": 23.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 1 x 6 (30kg) 2 x 10 (23kg)"
+        },
+        {
+          "name": "Lat pull downs narrow",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs narrow 2 x 8 (50kg)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "8.5kg",
+                "unit": "kg",
+                "value": 8.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 2 x 10 (8.5kg)"
+        },
+        {
+          "name": "Ez bar reverse",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "8.5kg",
+                "unit": "kg",
+                "value": 8.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse 1 x 6 (8.5kg)"
+        },
+        {
+          "name": "Dead hangs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 30,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dead hangs 2 x 30sec (no weight)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-24",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "9 plates",
+                "unit": "plates",
+                "value": 9.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (7 plates) 1 x 10 (9 plates) 2 x 10 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 10 (72kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 2 x 8 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 10 (4 plates) 1 x 6 (4 plates + 2kg)"
+        },
+        {
+          "name": "Tricep extensions bar",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates + 2kg",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 2.0
+              }
+            }
+          ],
+          "raw": "Tricep extensions bar 1 x 10 (7 plates) 2 x 10 (7 plates + 2kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 7 (no weights)"
+        },
+        {
+          "name": "Over head shoulder press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Over head shoulder press 2 x 8 (20kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "Lunge",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lunge 2 x 8 (12.5kg) 1 x 10 (12.5kg)"
+        },
+        {
+          "name": "Angled leg press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "80kg",
+                "unit": "kg",
+                "value": 80.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "100kg",
+                "unit": "kg",
+                "value": 100.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Angled leg press 1 x 10 (80kg) 2 x 10 (100kg)"
+        },
+        {
+          "name": "Quad extensions",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Quad extensions 1 x 10 (10 plates) 2 x 12 (12 plates)"
+        },
+        {
+          "name": "Calf raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 15,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Calf raises 3 x 15 (20kg)"
+        },
+        {
+          "name": "Inner thigh",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "54kg",
+                "unit": "kg",
+                "value": 54.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thigh 1 x 10 (60kg) 1 x 10 (54kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-27",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "43kg",
+                "unit": "kg",
+                "value": 43.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 11,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lat pull downs 1 x 10 (43kg) 1 x 10 (50kg) 1 x 11 (50kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "26kg",
+                "unit": "kg",
+                "value": 26.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 10 (26kg)"
+        },
+        {
+          "name": "Assisted pull ups",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "-36kg",
+                "unit": "kg",
+                "value": -36.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Assisted pull ups 1 x 8 (-36kg)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 3 x 8 (10kg)"
+        },
+        {
+          "name": "Ez bar curls reverse",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "8.5kg",
+                "unit": "kg",
+                "value": 8.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls reverse 3 x 8 (8.5kg)"
+        },
+        {
+          "name": "Wrist curls palm up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm up 2 x 10 (10kg)"
+        },
+        {
+          "name": "Wrist curls palm down",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm down 1 x 10 (6kg) 1 x 8 (6kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 10 (10kg) 1 x 9 (10kg) 1 x 8 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-30",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "25kg",
+                "unit": "kg",
+                "value": 25.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "25kg",
+                "unit": "kg",
+                "value": 25.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 2 x 10 (20kg) 1 x 8 (25kg) 1 x 10 (25kg)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 8 (72kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 3 x 8 (17.5kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 1 x 8 (no weights) 1 x 7 (no weights) 1 x 5 (no weights)"
+        },
+        {
+          "name": "Tricep extension one hand reverse grip",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extension one hand reverse grip 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions bar",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions bar 1 x 10 (6 plates) 2 x 12 (6 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 2 x 12 (8 plates) 1 x 10 (10 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 3 x 10 (50kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 6,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 6 (30kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 1 x 7 (10kg) 2 x 6 (10kg)"
+        },
+        {
+          "name": "Ez bar curls reverse",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7kg",
+                "unit": "kg",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "7kg",
+                "unit": "kg",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls reverse 1 x 8 (7kg) 2 x 7 (7kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-01",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "lunge",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lunge 3 x 10 (12.5kg)"
+        },
+        {
+          "name": "Angled leg press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "100kg",
+                "unit": "kg",
+                "value": 100.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Angled leg press 3 x 10 (100kg)"
+        },
+        {
+          "name": "Humstring curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Humstring curls 1 x 10 (12 plates)"
+        },
+        {
+          "name": "Inner thighs open",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 20,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thighs open 1 x 15 (60kg) 1 x 15 (72kg) 1 x 20 (72kg)"
+        },
+        {
+          "name": "Leg curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Leg curls 3 x 10 (10 plates)"
+        },
+        {
+          "name": "Calf raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Calf raises 1 x 8 (20kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-03",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (10 plates) 3 x 10 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 10 (72kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 3 x 10 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one-hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one-hand 3 x 12 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions one-hand reverse",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one-hand reverse 2 x 7 (4 plates) 1 x 6 (4 plates)"
+        },
+        {
+          "name": "Wrist curls palm up",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm up 1 x 10 (10kg)"
+        },
+        {
+          "name": "Wrist curls palm down",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm down 1 x 6 (7.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "type": "Chest & Bicep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "40kg",
+                "unit": "kg",
+                "value": 40.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "40kg",
+                "unit": "kg",
+                "value": 40.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 20,
+              "weight": {
+                "raw": "40kg",
+                "unit": "kg",
+                "value": 40.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (40kg) 1 x 12 (40kg) 1 x 20 (40kg)"
+        },
+        {
+          "name": "Chest squeeze",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 20,
+              "weight": {
+                "raw": "40kg",
+                "unit": "kg",
+                "value": 40.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest squeeze 3 x 20 (40kg)"
+        },
+        {
+          "name": "Bicep curl straight bar",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 6,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep curl straight bar 3 x 6 (15kg)"
+        },
+        {
+          "name": "Bend over back something",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bend over back something 3 x 10 (15kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 8 (no weights)"
+        },
+        {
+          "name": "Over head shoulder press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Over head shoulder press 3 x 8 (30kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (10 plates) 1 x 10 (11 plates) 1 x 10 (12 plates) 1 x 8 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 9,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 9 (72kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 2 x 10 (17.5kg) 1 x 12 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions reverse one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions reverse one hand 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 3 x 10 (4 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "type": "Back & Bicep & Shoulder",
+      "exercises": [
+        {
+          "name": "shoulder press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "54kg",
+                "unit": "kg",
+                "value": 54.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "shoulder press 1 x 10 (54kg) 1 x 6 (60kg) 1 x 10 (60kg) 1 x 12 (60kg)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "8 plates",
+                "unit": "plates",
+                "value": 8.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 1 x 15 (8 plates) 2 x 12 (10 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 2 x 8 (50kg) 1 x 10 (50kg)"
+        },
+        {
+          "name": "Bicep (D) Curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 9,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) Curls 3 x 9 (4 plates)"
+        },
+        {
+          "name": "Ez bar",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar 2 x 6 (10kg) 1 x 5 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse grip",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "5kg",
+                "unit": "kg",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse grip 1 x 6 (7.5kg) 1 x 5 (7.5kg) 1 x 10 (5kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "lunge",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "12kg",
+                "unit": "kg",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lunge 2 x 10 (12kg)"
+        },
+        {
+          "name": "Angled leg press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "100kg",
+                "unit": "kg",
+                "value": 100.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Angled leg press 2 x 10 (100kg)"
+        },
+        {
+          "name": "Humstring curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Humstring curls 1 x 10 (12 plates)"
+        },
+        {
+          "name": "Hip thrust",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "80kg",
+                "unit": "kg",
+                "value": 80.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "80kg",
+                "unit": "kg",
+                "value": 80.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hip thrust 1 x 9 (80kg) 2 x 10 (80kg)"
+        },
+        {
+          "name": "Inner thighs open",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thighs open 1 x 10 (72kg)"
+        },
+        {
+          "name": "Leg curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Leg curls 2 x 12 (12 plates)"
+        },
+        {
+          "name": "Calf raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Calf raises 1 x 10 (20kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 2 x 12 (10 plates) 1 x 10 (10 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 2 x 8 (5 plates) 1 x 10 (5 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 3 x 8 (50kg)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 3 x 8 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse 1 x 8 (7.5kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 8 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 12 (10 plates) 1 x 8 (11 plates) 1 x 8 (12 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 8 (72kg) 1 x 10 (72kg) 1 x 10 (78kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 2 x 10 (17.5kg) 1 x 9 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 3,
+              "reps": 7,
+              "weight": {
+                "raw": "4 plates + 3kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 3.0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 8 (4 plates) 3 x 7 (4 plates + 3kg)"
+        },
+        {
+          "name": "Tricep extensions one hand reverse",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand reverse 1 x 10 (4 plates) 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 7 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 1 x 10 (10 plates) 2 x 12 (11 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 15,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 2 x 10 (5 plates) 1 x 15 (5 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "53kg",
+                "unit": "kg",
+                "value": 53.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 3 x 10 (53kg)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Pull over",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull over 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 3 x 8 (10kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 3 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse curls 2 x 8 (7.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-25",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 13,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 10 (11 plates) 1 x 13 (11 plates) 1 x 12 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 8 (72kg) 1 x 12 (72kg) 1 x 10 (78kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 13,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 1 x 9 (17.5kg) 2 x 13 (17.5kg)"
+        },
+        {
+          "name": "Tricep (D) one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep (D) one hand 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Tricep (D) one hand reverse",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep (D) one hand reverse 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Wrist curls palm up",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm up 3 x 10 (6 kg)"
+        },
+        {
+          "name": "Wrist curls palm down",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls palm down 2 x 10 (6kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 12 (10 plates)"
+        },
+        {
+          "name": "Preacher curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Preacher curls 3 x 10 (10kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 2 x 12 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "type": "Chest",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 1 x 12 (20kg) 2 x 10 (30kg) 1 x 7 (30kg)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 8 (72kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 2 x 10 (17.5kg) 1 x 8 (17.5kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 10 (no weights)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 3 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 10 (10 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "5 plates",
+                "unit": "plates",
+                "value": 5.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 1 x 10 (5 plates) 1 x 8 (6 plates) 1 x 10 (6 plates)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 2 x 7 (10kg) 1 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 7,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse 2 x 7 (7.5kg)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 1 x 10 (4 plates) 2 x 6 (4 plates + 2kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 9,
+              "weight": {
+                "raw": "53kg",
+                "unit": "kg",
+                "value": 53.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lat pull downs 2 x 9 (53kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 2 x 10 (6 plates) 1 x 10 (7 plates)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 1 x 10 (11 plates) 1 x 8 (11 plates) 1 x 8 (10 plates)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Pull overs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull overs 2 x 10 (6 plates) 1 x 8 (7 plates)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "12kg",
+                "unit": "kg",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "12kg",
+                "unit": "kg",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 1 x 10 (10kg) 1 x 7 (12kg) 1 x 6 (12kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 12 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 14,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 8 (72kg) 1 x 10 (72kg) 1 x 14 (72kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 3 x 10 (10kg)"
+        },
+        {
+          "name": "Inclined dumbbell press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined dumbbell press 1 x 10 (17.5kg) 1 x 12 (17.5kg) 1 x 8 (17.5kg)"
+        },
+        {
+          "name": "Tricep ext one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            }
+          ],
+          "raw": "Tricep ext one hand 1 x 10 (4 plates + 2kg) 2 x 8 (4 plates + 2kg)"
+        },
+        {
+          "name": "Tricep ext reverse grip",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep ext reverse grip 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Side raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6kg",
+                "unit": "kg",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Side raises 3 x 10 (6kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 12 (10 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 1 x 8 (6 plates) 2 x 10 (6 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 1 x 8 (50kg) 2 x 10 (50kg)"
+        },
+        {
+          "name": "Pull overs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "6 plates + 3kg",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 3.0
+              }
+            }
+          ],
+          "raw": "Pull overs 2 x 10 (6 plates) 1 x 8 (6 plates + 3kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 2 x 10 (12.5kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 3 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 1 x 10 (10 plates) 1 x 12 (11 plates) 1 x 10 (11 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 3 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 3 x 8 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse curls 3 x 8 (7.5kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "12.5kg",
+                "unit": "kg",
+                "value": 12.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 3 x 10 (12.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 12 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 10 (72kg)"
+        },
+        {
+          "name": "Inclined dumbbell press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 14,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined dumbbell press 2 x 8 (17.5kg) 1 x 14 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 2 x 10 (no weights) 1 x 8 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "Lunges",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lunges 3 x 8 (15kg)"
+        },
+        {
+          "name": "Angled leg press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "100kg",
+                "unit": "kg",
+                "value": 100.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "120kg",
+                "unit": "kg",
+                "value": 120.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Angled leg press 1 x 10 (100kg) 2 x 10 (120kg)"
+        },
+        {
+          "name": "Humstring curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Humstring curls 1 x 10 (12 plates)"
+        },
+        {
+          "name": "Inner thighs close",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "60kg",
+                "unit": "kg",
+                "value": 60.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thighs close 1 x 10 (60kg)"
+        },
+        {
+          "name": "Inner thighs open",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inner thighs open 1 x 10 (72kg)"
+        },
+        {
+          "name": "Leg curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "13 plates",
+                "unit": "plates",
+                "value": 13.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Leg curls 1 x 10 (10 plates) 1 x 10 (11 plates) 1 x 10 (12 plates) 1 x 10 (13 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 12 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 2 x 10 (72kg)"
+        },
+        {
+          "name": "Inclined dumbbell press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined dumbbell press 1 x 8 (17.5kg) 1 x 10 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 3 x 10 (4 plates)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 5,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 5 (no weights) 1 x 7 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 10 (11 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 3 x 10 (50kg)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 1 x 8 (4 plates + 2kg) 2 x 8 (4 plates)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 3 x 10 (10kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "15kg",
+                "unit": "kg",
+                "value": 15.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 6 (15kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-25",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "standard push-up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 20,
+              "weight": null
+            }
+          ],
+          "raw": "standard push-up 2 x 20"
+        },
+        {
+          "name": "Wide push-up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 15,
+              "weight": null
+            }
+          ],
+          "raw": "Wide push-up 2 x 15"
+        },
+        {
+          "name": "Pike push-up",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": null
+            }
+          ],
+          "raw": "Pike push-up 2 x 6"
+        },
+        {
+          "name": "Tricep floor dips",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": null
+            }
+          ],
+          "raw": "Tricep floor dips 1 x 10"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "type": "Abs & Core",
+      "exercises": [
+        {
+          "name": "Mountain climbers",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 30,
+              "weight": null
+            }
+          ],
+          "raw": "Mountain climbers 1 x 30"
+        },
+        {
+          "name": "Leg raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": null
+            }
+          ],
+          "raw": "Leg raises 1 x 10"
+        },
+        {
+          "name": "Reverse crunches",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": null
+            }
+          ],
+          "raw": "Reverse crunches 1 x 10"
+        },
+        {
+          "name": "Plank",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 60,
+              "weight": null
+            }
+          ],
+          "raw": "Plank 1 x 60sec"
+        },
+        {
+          "name": "Side plank",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 45,
+              "weight": null
+            }
+          ],
+          "raw": "Side plank 1 x 45sec"
+        },
+        {
+          "name": "Sit-ups",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": null
+            }
+          ],
+          "raw": "Sit-ups 1 x 10"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-30",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "10 plates",
+                "unit": "plates",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 10 (10 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 9,
+              "weight": {
+                "raw": "66kg",
+                "unit": "kg",
+                "value": 66.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 11,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 2 x 9 (66kg) 1 x 11 (72kg)"
+        },
+        {
+          "name": "Inclined dumbbell press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined dumbbell press 3 x 8 (17.5kg) 1 x 10 (17.5kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 4,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 9 (4 plates) 1 x 10 (4 plates) 1 x 5 (4 plates + 2kg) 1 x 4 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions one hand reverse grip",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 5,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand reverse grip 1 x 5 (4 plates)"
+        },
+        {
+          "name": "Wrist curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Wrist curls 1 x 10 (10kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 8 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 10 (11 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 10 (6 plates)"
+        },
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "53kg",
+                "unit": "kg",
+                "value": 53.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 3 x 8 (53kg)"
+        },
+        {
+          "name": "Hammer curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Hammer curls 2 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar curl",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 7,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curl 3 x 7 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse grip",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "7kg",
+                "unit": "kg",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse grip 3 x 10 (7kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 4,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 4 x 10 (11 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 10 (72kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 7,
+              "weight": {
+                "raw": "17.5kg",
+                "unit": "kg",
+                "value": 17.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 3 x 7 (17.5kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 7,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 7 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "type": "Legs",
+      "exercises": [
+        {
+          "name": "lunges",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "lunges 3 x 8 (10kg)"
+        },
+        {
+          "name": "Angled leg press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "100kg",
+                "unit": "kg",
+                "value": 100.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Angled leg press 2 x 10 (100kg)"
+        },
+        {
+          "name": "Leg curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Leg curls 2 x 12 (12 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "13 plates",
+                "unit": "plates",
+                "value": 13.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 6,
+              "weight": {
+                "raw": "13 plates",
+                "unit": "plates",
+                "value": 13.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 2 x 12 (11 plates) 1 x 10 (13 plates) 2 x 6 (13 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 10 (72kg) 2 x 12 (72kg)"
+        },
+        {
+          "name": "Tricep one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 7,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            }
+          ],
+          "raw": "Tricep one hand 1 x 10 (4 plates) 1 x 10 (4 plates + 2kg) 1 x 7 (4 plates + 2kg)"
+        },
+        {
+          "name": "Dips",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "no weights",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Dips 3 x 8 (no weights)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "Lat pull downs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "57kg",
+                "unit": "kg",
+                "value": 57.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "57kg",
+                "unit": "kg",
+                "value": 57.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs 2 x 8 (50kg) 1 x 8 (57kg) 1 x 10 (57kg)"
+        },
+        {
+          "name": "Rows",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "57kg",
+                "unit": "kg",
+                "value": 57.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "57kg",
+                "unit": "kg",
+                "value": 57.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows 1 x 8 (57kg) 1 x 10 (57kg)"
+        },
+        {
+          "name": "Pull overs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "50kg",
+                "unit": "kg",
+                "value": 50.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "45kg",
+                "unit": "kg",
+                "value": 45.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull overs 2 x 8 (50kg) 1 x 10 (45kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 8 (10kg) 1 x 10 (10kg)"
+        },
+        {
+          "name": "Ez bar curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar curls 2 x 10 (10kg) 1 x 8 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7.5kg",
+                "unit": "kg",
+                "value": 7.5,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse 1 x 8 (7.5kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 12,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 2 x 12 (12 plates) 1 x 10 (12 plates) 1 x 9 (12 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 3 x 10 (72kg) 1 x 12 (72kg)"
+        },
+        {
+          "name": "Inclined chest press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "17kg",
+                "unit": "kg",
+                "value": 17.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "17kg",
+                "unit": "kg",
+                "value": 17.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined chest press 1 x 8 (17kg) 1 x 10 (17kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 9,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 12,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 9 (4 plates + 2kg) 1 x 12 (4 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 3 x 10 (12 plates) 1 x 10 (11 plates)"
+        },
+        {
+          "name": "Lat pull downs closed",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "57kg",
+                "unit": "kg",
+                "value": 57.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Lat pull downs closed 3 x 8 (57kg)"
+        },
+        {
+          "name": "Pull overs",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull overs 2 x 8 (7 plates) 1 x 6 (7 plates)"
+        },
+        {
+          "name": "Cable curls",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Cable curls 3 x 8 (7 plates)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 4,
+              "reps": 8,
+              "weight": {
+                "raw": "13 plates",
+                "unit": "plates",
+                "value": 13.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 4 x 8 (13 plates)"
+        },
+        {
+          "name": "Pec flies",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "72kg",
+                "unit": "kg",
+                "value": 72.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "78kg",
+                "unit": "kg",
+                "value": 78.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "84kg",
+                "unit": "kg",
+                "value": 84.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pec flies 1 x 8 (72kg) 1 x 8 (78kg) 1 x 8 (84kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 4,
+              "reps": 8,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 4 x 8 (20kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 8 (4 plates + 2kg) 3 x 8 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions two hands",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions two hands 2 x 10 (7 plates)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "type": "Back & Bicep",
+      "exercises": [
+        {
+          "name": "rows",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "12 plates",
+                "unit": "plates",
+                "value": 12.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "11 plates",
+                "unit": "plates",
+                "value": 11.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "rows 2 x 10 (12 plates) 1 x 8 (12 plates) 1 x 8 (11 plates)"
+        },
+        {
+          "name": "Rows one hand",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "6 plates",
+                "unit": "plates",
+                "value": 6.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Rows one hand 3 x 8 (6 plates)"
+        },
+        {
+          "name": "Pull overs",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull overs 3 x 8 (7 plates)"
+        },
+        {
+          "name": "Pull ups",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 3,
+              "weight": {
+                "raw": "no weight",
+                "unit": "bodyweight",
+                "value": 0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Pull ups 3 x 3 (no weight)"
+        },
+        {
+          "name": "Bicep (D) curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep (D) curls 2 x 8 (4 plates + 2kg) 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Bicep ez bar curls",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 8,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Bicep ez bar curls 2 x 8 (10kg) 1 x 6 (10kg)"
+        },
+        {
+          "name": "Ez bar reverse curl",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "7kg",
+                "unit": "kg",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Ez bar reverse curl 1 x 8 (7kg)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 1 x 10 (10kg)"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-18",
+      "type": "Chest & Tricep",
+      "exercises": [
+        {
+          "name": "chest press",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 10,
+              "weight": {
+                "raw": "13 plates",
+                "unit": "plates",
+                "value": 13.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "chest press 3 x 10 (13 plates)"
+        },
+        {
+          "name": "Chest press-2",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 6,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            },
+            {
+              "sets": 2,
+              "reps": 5,
+              "weight": {
+                "raw": "30kg",
+                "unit": "kg",
+                "value": 30.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Chest press-2 1 x 6 (30kg) 1 x 8 (30kg) 2 x 5 (30kg)"
+        },
+        {
+          "name": "Inclined bench press",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "20kg",
+                "unit": "kg",
+                "value": 20.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Inclined bench press 1 x 8 (20kg)"
+        },
+        {
+          "name": "Tricep extensions one hand",
+          "sets": [
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates + 2kg",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 2.0
+              }
+            },
+            {
+              "sets": 1,
+              "reps": 8,
+              "weight": {
+                "raw": "4 plates",
+                "unit": "plates",
+                "value": 4.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions one hand 1 x 8 (4 plates + 2kg) 1 x 8 (4 plates)"
+        },
+        {
+          "name": "Tricep extensions",
+          "sets": [
+            {
+              "sets": 3,
+              "reps": 8,
+              "weight": {
+                "raw": "7 plates",
+                "unit": "plates",
+                "value": 7.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Tricep extensions 3 x 8 (7 plates)"
+        },
+        {
+          "name": "Back raises",
+          "sets": [
+            {
+              "sets": 2,
+              "reps": 10,
+              "weight": {
+                "raw": "10kg",
+                "unit": "kg",
+                "value": 10.0,
+                "bonusKg": 0
+              }
+            }
+          ],
+          "raw": "Back raises 2 x 10 (10kg)"
+        }
+      ]
+    }
+  ]
+}
