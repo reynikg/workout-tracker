@@ -4,6 +4,7 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
+const APP_VERSION = '1.2.0'; // shown in Settings; reflects the app files actually loaded on this device
 
 /* ---------- Common exercise library (merged with your own) ---------- */
 const COMMON_EXERCISES = [
@@ -797,6 +798,7 @@ function openSettings() {
       <button class="btn btn-danger" id="reset-btn">Erase all data</button>
     </div>
     <div class="hint center-text">Tip: clearing your browser history can erase this data — export a backup now and then.</div>
+    <div class="hint center-text" style="margin-top:18px">Workout Tracker · version ${APP_VERSION}</div>
   `;
   const sheet = openSheet('Settings', body);
   const installBtn = sheet.querySelector('#install-btn');
