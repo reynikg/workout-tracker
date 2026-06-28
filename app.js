@@ -61,6 +61,7 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) { data = JSON.parse(raw); if (!data.workouts) data.workouts = []; }
   } catch (e) { console.warn('load failed', e); data = { version: 1, workouts: [] }; }
+  if (!Array.isArray(data.weights)) data.weights = [];
 }
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
@@ -154,7 +155,7 @@ function exerciseLibrary() {
 /* ============================================================
    Navigation
    ============================================================ */
-const PAGE_TITLES = { stats: 'Stats', calendar: 'Calendar', add: 'Add Workout' };
+const PAGE_TITLES = { stats: 'Stats', calendar: 'Calendar', weight: 'Weight', add: 'Add Workout' };
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -164,6 +165,7 @@ function switchTab(tab) {
   window.scrollTo(0, 0);
   if (tab === 'stats') renderStats();
   if (tab === 'calendar') renderCalendar();
+  if (tab === 'weight') renderWeight();
   if (tab === 'add') renderAddPage();
 }
 
@@ -171,37 +173,119 @@ function switchTab(tab) {
    STATS
    ============================================================ */
 let freqMode = 'month';
-let statExercise = null;
-let statMetric = 'weight';
+let statWindow = '3m';
+
+const WINDOWS = [
+  { k: '1m', label: 'Month', days: 31 },
+  { k: '3m', label: '3 Months', days: 92 },
+  { k: 'year', label: 'Year', days: 366 },
+  { k: 'all', label: 'All', days: null },
+];
+function windowStart(mode) {
+  if (mode === 'all') return null;
+  const w = WINDOWS.find(x => x.k === mode) || WINDOWS[1];
+  const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() - w.days); return d;
+}
+function workoutsIn(mode) {
+  const start = windowStart(mode);
+  if (!start) return data.workouts.slice();
+  return data.workouts.filter(w => dateObj(w.date) >= start);
+}
+// Reps for one set entry: "3 x 12" -> 36; "12" -> 12; lone weight (no reps) -> 0
+function repsOfSet(s) {
+  if (s.reps == null) return 0;
+  const n = (s.sets != null) ? s.sets : 1;
+  return n * s.reps;
+}
+function setsOfSet(s) { return (s.sets != null) ? s.sets : (s.reps != null ? 1 : 0); }
+
+function exerciseAgg(ws) {
+  const map = new Map();
+  ws.forEach(w => w.exercises.forEach(e => {
+    const key = e.name.trim().toLowerCase();
+    if (!map.has(key)) map.set(key, { name: e.name, key, reps: 0, sets: 0, sessions: new Set() });
+    const a = map.get(key);
+    a.sessions.add(w.date);
+    e.sets.forEach(s => { a.reps += repsOfSet(s); a.sets += setsOfSet(s); });
+  }));
+  return [...map.values()].map(a => ({ name: a.name, reps: a.reps, sets: a.sets, times: a.sessions.size }));
+}
+function statRecords(ws) {
+  let bigSession = null;
+  ws.forEach(w => {
+    let reps = 0; w.exercises.forEach(e => e.sets.forEach(s => reps += repsOfSet(s)));
+    if (reps > 0 && (!bigSession || reps > bigSession.reps)) bigSession = { date: w.date, type: w.type, reps };
+  });
+  let bigSet = null;
+  ws.forEach(w => w.exercises.forEach(e => e.sets.forEach(s => {
+    const r = repsOfSet(s);
+    if (r > 0 && (!bigSet || r > bigSet.reps)) bigSet = { reps: r, name: e.name, date: w.date };
+  })));
+  // longest streak of consecutive calendar days (all-time)
+  const days = [...new Set(data.workouts.map(w => w.date))].sort();
+  let streak = days.length ? 1 : 0, best = streak;
+  for (let i = 1; i < days.length; i++) {
+    const gap = dateObj(days[i]) - dateObj(days[i-1]);
+    if (gap === 86400000) { streak++; if (streak > best) best = streak; }
+    else streak = 1;
+  }
+  return { bigSession, bigSet, streak: best };
+}
+function fmtNum(n){ return Math.round(n).toLocaleString('en-US'); }
 
 function renderStats() {
   const el = document.getElementById('page-stats');
-  const ws = data.workouts;
-  if (!ws.length) {
-    el.innerHTML = emptyState('No workouts yet', 'Add your first workout or import your 2026 log from Settings.', true);
+  const all = data.workouts;
+  if (!all.length) {
+    el.innerHTML = emptyState('No workouts yet', 'Add your first workout or import a log from Settings.', true);
     bindEmpty(el);
     return;
   }
-  const sorted = [...ws].sort((a, b) => a.date.localeCompare(b.date));
-  const now = new Date();
-  const wkStart = weekStart(now);
-  const moKey = `${now.getFullYear()}-${pad(now.getMonth()+1)}`;
-  const thisWeek = ws.filter(w => dateObj(w.date) >= wkStart).length;
-  const thisMonth = ws.filter(w => w.date.slice(0,7) === moKey).length;
-  const first = dateObj(sorted[0].date), last = dateObj(sorted[sorted.length-1].date);
-  const weeksSpan = Math.max(1, Math.round((last - first) / (7*86400000)) + 1);
-  const avg = (ws.length / weeksSpan).toFixed(1);
+  let totReps = 0, totSets = 0;
+  all.forEach(w => w.exercises.forEach(e => e.sets.forEach(s => { totReps += repsOfSet(s); totSets += setsOfSet(s); })));
+  const heroStreak = statRecords(all).streak;
+
+  const ws = workoutsIn(statWindow);
+  const agg = exerciseAgg(ws);
+  const byReps = [...agg].sort((a,b) => b.reps - a.reps).filter(r => r.reps > 0).slice(0, 8);
+  const byTimes = [...agg].sort((a,b) => b.times - a.times || b.reps - a.reps).slice(0, 8);
+  const winLabel = (WINDOWS.find(x=>x.k===statWindow)||WINDOWS[1]).label.toLowerCase();
+  const winText = statWindow==='all' ? 'all time' : `last ${winLabel}`;
 
   el.innerHTML = `
     <div class="stat-grid">
-      <div class="stat-tile accent"><div class="num">${ws.length}</div><div class="lbl">Total workouts</div><div class="sub">since ${MONTHS[first.getMonth()]} ${first.getFullYear()}</div></div>
-      <div class="stat-tile green"><div class="num">${thisWeek}</div><div class="lbl">This week</div><div class="sub">${avg} / week avg</div></div>
-      <div class="stat-tile orange"><div class="num">${thisMonth}</div><div class="lbl">This month</div><div class="sub">${MONTHS_FULL[now.getMonth()]}</div></div>
-      <div class="stat-tile purple"><div class="num">${totalSets(ws)}</div><div class="lbl">Sets logged</div><div class="sub">all time</div></div>
+      <div class="stat-tile accent"><div class="num">${all.length}</div><div class="lbl">Workouts</div><div class="sub">all time</div></div>
+      <div class="stat-tile green"><div class="num">${fmtNum(totReps)}</div><div class="lbl">Reps crushed</div><div class="sub">all time</div></div>
+      <div class="stat-tile orange"><div class="num">${fmtNum(totSets)}</div><div class="lbl">Sets logged</div><div class="sub">all time</div></div>
+      <div class="stat-tile purple"><div class="num">${heroStreak}</div><div class="lbl">Best streak</div><div class="sub">days in a row</div></div>
+    </div>
+
+    <div class="segmented" id="win-seg">
+      ${WINDOWS.map(w=>`<button data-k="${w.k}" class="${statWindow===w.k?'active':''}">${w.label}</button>`).join('')}
     </div>
 
     <div class="card">
-      <h2>Frequency</h2>
+      <h2>Most reps · ${escapeHtml(winText)}</h2>
+      ${leaderboardHTML(byReps, 'reps', r => `${fmtNum(r.reps)}`)}
+    </div>
+
+    <div class="card">
+      <h2>Done most often · ${escapeHtml(winText)}</h2>
+      ${leaderboardHTML(byTimes, 'times', r => `${r.times}×`)}
+    </div>
+
+    <div class="card">
+      <h2>Records · ${escapeHtml(winText)}</h2>
+      ${recordsHTML(statRecords(ws))}
+    </div>
+
+    <div class="card">
+      <h2>Muscle groups · ${escapeHtml(winText)}</h2>
+      <div id="muscle-breakdown">${muscleBreakdownHTML(ws)}</div>
+    </div>
+
+    <div class="card">
+      <h2>Consistency</h2>
       <div class="segmented" id="freq-seg">
         <button data-m="week" class="${freqMode==='week'?'active':''}">Week</button>
         <button data-m="month" class="${freqMode==='month'?'active':''}">Month</button>
@@ -209,49 +293,38 @@ function renderStats() {
       </div>
       <div class="chart-wrap" id="freq-chart"></div>
     </div>
-
-    <div class="card">
-      <h2>Muscle groups trained</h2>
-      <div id="muscle-breakdown"></div>
-    </div>
-
-    <div class="card">
-      <h2>Exercise progression</h2>
-      <select class="select" id="ex-select"></select>
-      <div class="segmented" id="metric-seg" style="margin-top:12px;">
-        <button data-k="weight" class="${statMetric==='weight'?'active':''}">Top weight</button>
-        <button data-k="volume" class="${statMetric==='volume'?'active':''}">Volume</button>
-        <button data-k="reps" class="${statMetric==='reps'?'active':''}">Max reps</button>
-      </div>
-      <div class="chart-wrap" id="ex-chart"></div>
-      <div id="ex-pr" class="hint"></div>
-    </div>
   `;
-
   document.getElementById('freq-chart').innerHTML = freqChartSVG();
-  document.getElementById('muscle-breakdown').innerHTML = muscleBreakdownHTML();
-
-  // exercise select
-  const sel = document.getElementById('ex-select');
-  const exs = exercisesWithHistory();
-  if (!statExercise || !exs.includes(statExercise)) statExercise = exs[0] || null;
-  sel.innerHTML = exs.map(n => `<option ${n===statExercise?'selected':''}>${escapeHtml(n)}</option>`).join('');
-  sel.onchange = () => { statExercise = sel.value; drawExChart(); };
-
+  document.getElementById('win-seg').onclick = e => { const b = e.target.closest('button'); if (!b) return; statWindow = b.dataset.k; renderStats(); };
   document.getElementById('freq-seg').onclick = e => {
     const b = e.target.closest('button'); if (!b) return;
-    freqMode = b.dataset.m; renderStats();
+    freqMode = b.dataset.m;
+    document.getElementById('freq-chart').innerHTML = freqChartSVG();
+    document.querySelectorAll('#freq-seg button').forEach(x => x.classList.toggle('active', x === b));
   };
-  document.getElementById('metric-seg').onclick = e => {
-    const b = e.target.closest('button'); if (!b) return;
-    statMetric = b.dataset.k;
-    document.querySelectorAll('#metric-seg button').forEach(x => x.classList.toggle('active', x === b));
-    drawExChart();
-  };
-  drawExChart();
 }
 
-function totalSets(ws){ let n=0; ws.forEach(w=>w.exercises.forEach(e=>e.sets.forEach(s=>{ n += (s.sets||1); }))); return n; }
+function leaderboardHTML(rows, kind, valFn) {
+  if (!rows.length) return '<div class="muted">No data in this period.</div>';
+  const max = Math.max(1, rows[0][kind]);
+  const medals = ['#ffd60a', '#c7c7cc', '#cd7f32'];
+  return rows.map((r, i) => `
+    <div class="lb-row">
+      <div class="lb-rank" style="${i<3?`background:${medals[i]};color:#1d1d1f`:''}">${i+1}</div>
+      <div class="lb-main">
+        <div class="lb-name">${escapeHtml(r.name)}</div>
+        <div class="lb-bar"><span style="width:${Math.max(4,(r[kind]/max)*100)}%"></span></div>
+      </div>
+      <div class="lb-val">${valFn(r)}</div>
+    </div>`).join('');
+}
+function recordsHTML(rec) {
+  const rows = [];
+  if (rec.bigSession) rows.push(['Biggest session', `${fmtNum(rec.bigSession.reps)} reps`, `${escapeHtml(rec.bigSession.type||'Workout')} · ${fmtDateLong(rec.bigSession.date)}`]);
+  if (rec.bigSet) rows.push(['Most reps in a set', `${rec.bigSet.reps} reps`, `${escapeHtml(rec.bigSet.name)} · ${fmtDateLong(rec.bigSet.date)}`]);
+  if (!rows.length) return '<div class="muted">No data in this period.</div>';
+  return rows.map(([t,v,s]) => `<div class="rec-row"><div class="rec-ico">★</div><div class="rec-main"><div class="rec-t">${t}</div><div class="rec-s">${s}</div></div><div class="rec-v">${v}</div></div>`).join('');
+}
 
 function freqBuckets() {
   const ws = data.workouts;
@@ -281,9 +354,10 @@ function freqBuckets() {
 }
 function freqChartSVG(){ return barChartSVG(freqBuckets(), { unit: '' }); }
 
-function muscleBreakdownHTML() {
+function muscleBreakdownHTML(ws) {
+  ws = ws || data.workouts;
   const counts = new Map();
-  data.workouts.forEach(w => {
+  ws.forEach(w => {
     const tokens = (w.type||'').split(/[&,]/).map(t => normMuscle(t)).filter(Boolean);
     new Set(tokens).forEach(t => counts.set(t, (counts.get(t)||0)+1));
   });
@@ -305,67 +379,6 @@ function normMuscle(t) {
     cardio:'Cardio', abs:'Core', core:'Core', corr:'Core' };
   for (const k in map) if (s === k || s.startsWith(k)) return map[k];
   return t.trim().replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function exercisesWithHistory() {
-  const map = new Map(); // key -> {name, sessions:Set}
-  data.workouts.forEach(w => w.exercises.forEach(e => {
-    const k = e.name.trim().toLowerCase();
-    if (!map.has(k)) map.set(k, { name: e.name, dates: new Set() });
-    map.get(k).dates.add(w.date);
-  }));
-  return [...map.values()].filter(x => x.dates.size >= 2)
-    .sort((a,b) => b.dates.size - a.dates.size).map(x => x.name);
-}
-
-function exerciseSeries(name) {
-  const key = name.trim().toLowerCase();
-  const rows = [];
-  data.workouts.forEach(w => {
-    const matches = w.exercises.filter(e => e.name.trim().toLowerCase() === key);
-    if (!matches.length) return;
-    let allSets = [];
-    matches.forEach(e => allSets = allSets.concat(e.sets));
-    rows.push({ date: w.date, sets: allSets });
-  });
-  rows.sort((a,b)=>a.date.localeCompare(b.date));
-  // dominant unit
-  const unitCount = {};
-  rows.forEach(r => r.sets.forEach(s => { if (s.weight && s.weight.unit && s.weight.value!=null) unitCount[s.weight.unit] = (unitCount[s.weight.unit]||0)+1; }));
-  let unit = Object.keys(unitCount).sort((a,b)=>unitCount[b]-unitCount[a])[0] || null;
-  const points = [];
-  rows.forEach(r => {
-    let val = null;
-    if (statMetric === 'reps') {
-      val = Math.max(...r.sets.map(s => s.reps||0));
-    } else if (statMetric === 'volume') {
-      let v = 0;
-      r.sets.forEach(s => { if (s.weight && s.weight.unit===unit && s.weight.value!=null) v += (s.sets||1)*(s.reps||0)*(s.weight.value + (s.weight.bonusKg||0)*(unit==='plates'?0.1:1)); });
-      val = v || null;
-    } else { // weight (top set)
-      const cand = r.sets.filter(s => s.weight && s.weight.unit===unit && s.weight.value!=null)
-        .map(s => s.weight.value + (s.weight.bonusKg||0)*(unit==='plates'?0.1:1));
-      if (cand.length) val = Math.max(...cand);
-    }
-    if (val != null) points.push({ label: `${dateObj(r.date).getDate()} ${MONTHS[dateObj(r.date).getMonth()]}`, value: val, date: r.date });
-  });
-  return { points, unit };
-}
-
-function drawExChart() {
-  const wrap = document.getElementById('ex-chart');
-  const prEl = document.getElementById('ex-pr');
-  if (!wrap) return;
-  if (!statExercise) { wrap.innerHTML = '<div class="muted center-text" style="padding:24px">No exercise selected.</div>'; prEl.textContent=''; return; }
-  const { points, unit } = exerciseSeries(statExercise);
-  if (points.length < 2) { wrap.innerHTML = '<div class="muted center-text" style="padding:24px">Not enough data yet for a chart.</div>'; prEl.textContent=''; return; }
-  let unitLabel = statMetric==='reps' ? 'reps' : (statMetric==='volume' ? (unit==='plates'?'plate·reps':'kg·reps') : (unit||''));
-  wrap.innerHTML = lineChartSVG(points, { unitLabel });
-  // PR note
-  const best = points.reduce((a,b)=> b.value>a.value?b:a, points[0]);
-  const fmt = v => Number.isInteger(v)? v : v.toFixed(1);
-  const metricName = statMetric==='reps'?'Most reps':(statMetric==='volume'?'Best volume':'Heaviest set');
-  prEl.textContent = `${metricName}: ${fmt(best.value)} ${unitLabel} on ${fmtDateLong(best.date)}`;
 }
 
 /* ============================================================
@@ -835,7 +848,13 @@ function importFile(file) {
       const ws = Array.isArray(obj) ? obj : obj.workouts;
       if (!Array.isArray(ws)) throw new Error('no workouts array');
       const n = mergeWorkouts(ws);
-      closeModal(); toast(`Imported ${n} workout${n===1?'':'s'}`); switchTab('stats');
+      let wn = 0;
+      if (obj && Array.isArray(obj.weights)) {
+        const seen = new Set(data.weights.map(x => x.date));
+        obj.weights.forEach(x => { if (x && x.date && !seen.has(x.date) && isFinite(x.value)) { data.weights.push({ date: x.date, value: x.value }); seen.add(x.date); wn++; } });
+        if (wn) { data.weights.sort((a,b)=>a.date.localeCompare(b.date)); save(); }
+      }
+      closeModal(); toast(`Imported ${n} workout${n===1?'':'s'}${wn?` · ${wn} weigh-ins`:''}`); switchTab('stats');
     } catch (e) { toast('Could not read that file'); }
   };
   reader.readAsText(file);
@@ -860,6 +879,101 @@ function emptyState(title, msg, showImport) {
 function bindEmpty(el){
   const a = el.querySelector('#empty-add'); if (a) a.onclick = () => switchTab('add');
   const i = el.querySelector('#empty-import'); if (i) i.onclick = openSettings;
+}
+
+/* ============================================================
+   BODYWEIGHT
+   ============================================================ */
+function sortedWeights() { return [...data.weights].sort((a,b) => a.date.localeCompare(b.date)); }
+function upsertWeight(date, value) {
+  data.weights = data.weights.filter(w => w.date !== date);
+  data.weights.push({ date, value });
+  data.weights.sort((a,b) => a.date.localeCompare(b.date));
+  save();
+}
+function deleteWeight(date) { data.weights = data.weights.filter(w => w.date !== date); save(); }
+function fmtKg(v){ const r = Math.round(v*10)/10; return Number.isInteger(r) ? String(r) : r.toFixed(1); }
+
+function renderWeight() {
+  const el = document.getElementById('page-weight');
+  const ws = sortedWeights();
+  const today = todayStr();
+  const existingToday = ws.find(w => w.date === today);
+
+  let chart;
+  if (ws.length >= 2) {
+    const points = ws.map(w => ({ label: `${dateObj(w.date).getDate()} ${MONTHS[dateObj(w.date).getMonth()]}`, value: w.value, date: w.date }));
+    chart = lineChartSVG(points, { unitLabel: 'kg' });
+  } else {
+    chart = '<div class="muted center-text" style="padding:28px">Log at least two days to see your trend.</div>';
+  }
+
+  let tiles = '';
+  if (ws.length) {
+    const latest = ws[ws.length-1], first = ws[0];
+    const change = latest.value - first.value;
+    const lo = Math.min(...ws.map(w=>w.value)), hi = Math.max(...ws.map(w=>w.value));
+    const sign = change > 0 ? '+' : '';
+    tiles = `
+      <div class="stat-grid">
+        <div class="stat-tile accent"><div class="num">${fmtKg(latest.value)}</div><div class="lbl">Current (kg)</div><div class="sub">${fmtDateLong(latest.date)}</div></div>
+        <div class="stat-tile ${change<=0?'green':'orange'}"><div class="num">${sign}${fmtKg(change)}</div><div class="lbl">Since start</div><div class="sub">${ws.length} entr${ws.length===1?'y':'ies'}</div></div>
+        <div class="stat-tile purple"><div class="num">${fmtKg(lo)}</div><div class="lbl">Lowest</div></div>
+        <div class="stat-tile orange"><div class="num">${fmtKg(hi)}</div><div class="lbl">Highest</div></div>
+      </div>`;
+  }
+
+  el.innerHTML = `
+    <div class="card">
+      <h2>Weight trend (kg)</h2>
+      <div class="chart-wrap">${chart}</div>
+    </div>
+    ${tiles}
+    <div class="card">
+      <h2>${existingToday ? 'Update today' : 'Log weight'}</h2>
+      <label class="field-label">Date</label>
+      <input class="input" type="date" id="wt-date" value="${today}" />
+      <label class="field-label">Weight (kg)</label>
+      <input class="input" type="number" inputmode="decimal" step="0.1" id="wt-val" placeholder="e.g. 78.5" value="${existingToday?existingToday.value:''}" />
+      <button class="btn btn-primary" id="wt-save" style="margin-top:14px">${existingToday?'Update':'Save'}</button>
+    </div>
+    ${ws.length ? `<div class="section-title">History</div><div class="list">${[...ws].reverse().map(weightRow).join('')}</div>` : ''}
+  `;
+
+  const dateEl = el.querySelector('#wt-date');
+  const valEl = el.querySelector('#wt-val');
+  const saveBtn = el.querySelector('#wt-save');
+  dateEl.onchange = () => {
+    const ex = data.weights.find(w => w.date === dateEl.value);
+    valEl.value = ex ? ex.value : '';
+    saveBtn.textContent = ex ? 'Update' : 'Save';
+  };
+  saveBtn.onclick = () => {
+    const d = dateEl.value;
+    const v = parseFloat(String(valEl.value).replace(',', '.'));
+    if (!d) { toast('Pick a date'); return; }
+    if (!isFinite(v) || v <= 0) { toast('Enter a valid weight'); return; }
+    upsertWeight(d, Math.round(v*10)/10);
+    toast('Weight saved');
+    renderWeight();
+  };
+  el.querySelectorAll('[data-wt-del]').forEach(b => b.onclick = (ev) => {
+    ev.stopPropagation();
+    const dt = b.dataset.wtDel;
+    showDialog('Delete entry?', fmtDateLong(dt), [
+      { label: 'Cancel', class: 'btn-secondary', onClick: closeModal },
+      { label: 'Delete', class: 'btn-danger', onClick: () => { deleteWeight(dt); closeModal(); renderWeight(); } },
+    ]);
+  });
+}
+function weightRow(w) {
+  const d = dateObj(w.date);
+  const wd = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  return `<div class="list-row">
+    <div class="lr-date"><div class="d">${d.getDate()}</div><div class="m">${MONTHS[d.getMonth()]}</div></div>
+    <div class="lr-main"><div class="lr-title">${fmtKg(w.value)} kg</div><div class="lr-sub">${wd} ${d.getFullYear()}</div></div>
+    <button class="row-del" data-wt-del="${w.date}" aria-label="Delete">×</button>
+  </div>`;
 }
 
 /* ============================================================

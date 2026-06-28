@@ -249,6 +249,29 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; color: va
 .toast { position: fixed; bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 16px); left: 50%; transform: translateX(-50%); background: var(--label); color: var(--bg); padding: 11px 18px; border-radius: 100px; font-size: 14px; font-weight: 500; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.2); animation: toastin 0.3s; }
 @keyframes toastin { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%,0); } }
 
+/* Leaderboard */
+.lb-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; }
+.lb-row:not(:last-child) { border-bottom: 0.5px solid var(--separator); }
+.lb-rank { flex: 0 0 24px; height: 24px; border-radius: 7px; background: var(--fill-2); color: var(--label-secondary); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+.lb-main { flex: 1; min-width: 0; }
+.lb-name { font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-bar { height: 6px; border-radius: 3px; background: var(--fill); margin-top: 5px; overflow: hidden; }
+.lb-bar span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+.lb-val { font-size: 15px; font-weight: 700; color: var(--label); font-variant-numeric: tabular-nums; min-width: 52px; text-align: right; }
+
+/* Records */
+.rec-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.rec-row:not(:last-child) { border-bottom: 0.5px solid var(--separator); }
+.rec-ico { flex: 0 0 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.rec-main { flex: 1; min-width: 0; }
+.rec-t { font-size: 15px; font-weight: 600; }
+.rec-s { font-size: 13px; color: var(--label-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rec-v { font-size: 16px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* Row delete button */
+.row-del { background: var(--fill); border: none; color: var(--label-tertiary); width: 28px; height: 28px; border-radius: 50%; font-size: 18px; line-height: 1; cursor: pointer; flex: 0 0 28px; }
+.row-del:active { background: var(--fill-2); color: var(--pink); }
+
 .muted { color: var(--label-secondary); font-size: 14px; }
 .center-text { text-align: center; }
 .hint { font-size: 13px; color: var(--label-tertiary); margin: 6px 4px 0; }

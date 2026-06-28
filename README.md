@@ -5,7 +5,8 @@ Pure HTML, CSS and JavaScript — no build step, no server, no accounts.
 
 - Calendar view of every workout day
 - Add workouts fast: date, type, exercises with autocomplete, sets/reps and weight
-- Stats dashboard: workouts per week/month/year, muscle-group breakdown, per-exercise weight/volume/reps progression
+- Game-style stats: total reps crushed, best streak, leaderboards for most reps and most-trained exercises (with a time-window filter), records, and a consistency chart
+- Bodyweight tracker: log your weight per day and see the trend graph
 - Your data is stored **only in your browser** (localStorage) — nothing is uploaded
 - Import / export backups as a `.json` file
 - Your January–June 2026 log is bundled and loadable with one tap
