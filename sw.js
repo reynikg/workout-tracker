@@ -1,7 +1,7 @@
 /* Workout Tracker service worker — offline app shell + data.
    Bump CACHE when you change app files to push an update. */
 /* Keep this version in sync with APP_VERSION in app.js. */
-const CACHE = 'wt-cache-1.3.0';
+const CACHE = 'wt-cache-1.5.0';
 
 /* Core files the app needs to run offline. */
 const CORE = [
@@ -9,6 +9,8 @@ const CORE = [
   './index.html',
   './styles.css',
   './app.js',
+  './legal.js',
+  './legal.html',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',

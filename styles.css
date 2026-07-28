@@ -1,4 +1,25 @@
+/* ============================================================
+   Design tokens
+   Colour is driven by two attributes on <html>:
+     data-resolved = "light" | "dark"   (system pref resolved in JS)
+     data-theme    = palette name
+   ============================================================ */
 :root {
+  --radius: 16px;
+  --radius-sm: 11px;
+  --tabbar-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --green: #34c759;
+  --orange: #ff9f0a;
+  --purple: #5e5ce6;
+  --pink: #ff375f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Base: LIGHT ---------- */
+:root,
+[data-resolved="light"] {
   --bg: #f5f5f7;
   --bg-elevated: #ffffff;
   --bg-grouped: #ffffff;
@@ -10,35 +31,64 @@
   --fill-2: rgba(118,118,128,0.14);
   --accent: #0a84ff;
   --accent-soft: rgba(10,132,255,0.12);
-  --green: #34c759;
-  --orange: #ff9f0a;
-  --purple: #5e5ce6;
-  --pink: #ff375f;
-  --radius: 16px;
-  --radius-sm: 11px;
   --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
-  --tabbar-h: 64px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-top: env(safe-area-inset-top, 0px);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #000000;
-    --bg-elevated: #1c1c1e;
-    --bg-grouped: #1c1c1e;
-    --label: #f5f5f7;
-    --label-secondary: #98989f;
-    --label-tertiary: #636366;
-    --separator: rgba(84,84,88,0.5);
-    --fill: rgba(118,118,128,0.18);
-    --fill-2: rgba(118,118,128,0.28);
-    --accent: #0a84ff;
-    --accent-soft: rgba(10,132,255,0.22);
-    --shadow: 0 1px 3px rgba(0,0,0,0.4);
-  }
+/* ---------- Base: DARK ---------- */
+[data-resolved="dark"] {
+  --bg: #000000;
+  --bg-elevated: #1c1c1e;
+  --bg-grouped: #1c1c1e;
+  --label: #f5f5f7;
+  --label-secondary: #98989f;
+  --label-tertiary: #636366;
+  --separator: rgba(84,84,88,0.5);
+  --fill: rgba(118,118,128,0.18);
+  --fill-2: rgba(118,118,128,0.28);
+  --accent: #0a84ff;
+  --accent-soft: rgba(10,132,255,0.22);
+  --shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
+
+/* ============================================================
+   THEMES — hue only. Structure, spacing and type never change.
+   ============================================================ */
+
+/* Ocean Blue (default) */
+[data-theme="ocean"][data-resolved="light"] { --bg:#eef4fb; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#0a84ff; --accent-soft:rgba(10,132,255,0.12); }
+[data-theme="ocean"][data-resolved="dark"]  { --bg:#000811; --bg-elevated:#111d2b; --bg-grouped:#111d2b; --accent:#3aa0ff; --accent-soft:rgba(58,160,255,0.22); }
+
+/* Forest Green */
+[data-theme="forest"][data-resolved="light"] { --bg:#eff5f0; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#2e9e5b; --accent-soft:rgba(46,158,91,0.14); --label:#16241b; }
+[data-theme="forest"][data-resolved="dark"]  { --bg:#050c08; --bg-elevated:#13201a; --bg-grouped:#13201a; --accent:#3ecb7d; --accent-soft:rgba(62,203,125,0.20); }
+
+/* Midnight Blue */
+[data-theme="midnight"][data-resolved="light"] { --bg:#eeeff8; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#4b5bd6; --accent-soft:rgba(75,91,214,0.13); --label:#171a2e; }
+[data-theme="midnight"][data-resolved="dark"]  { --bg:#04050f; --bg-elevated:#131730; --bg-grouped:#131730; --accent:#818cff; --accent-soft:rgba(129,140,255,0.22); }
+
+/* Eggshell White */
+[data-theme="eggshell"][data-resolved="light"] { --bg:#f7f3ea; --bg-elevated:#fffdf8; --bg-grouped:#fffdf8; --accent:#94794a; --accent-soft:rgba(148,121,74,0.14); --label:#2a2419; --separator:rgba(90,75,50,0.16); }
+[data-theme="eggshell"][data-resolved="dark"]  { --bg:#0d0b07; --bg-elevated:#1e1a13; --bg-grouped:#1e1a13; --accent:#d9bb85; --accent-soft:rgba(217,187,133,0.20); }
+
+/* Cherry Blossom Pink */
+[data-theme="sakura"][data-resolved="light"] { --bg:#fbf0f5; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#d94f87; --accent-soft:rgba(217,79,135,0.13); --label:#2e1a22; }
+[data-theme="sakura"][data-resolved="dark"]  { --bg:#12060a; --bg-elevated:#25141b; --bg-grouped:#25141b; --accent:#ff8ab5; --accent-soft:rgba(255,138,181,0.20); }
+
+/* Cream Yellow */
+[data-theme="cream"][data-resolved="light"] { --bg:#fdf8e9; --bg-elevated:#fffdf5; --bg-grouped:#fffdf5; --accent:#b8891a; --accent-soft:rgba(184,137,26,0.15); --label:#2b2411; --separator:rgba(100,85,40,0.16); }
+[data-theme="cream"][data-resolved="dark"]  { --bg:#0e0c05; --bg-elevated:#1f1b10; --bg-grouped:#1f1b10; --accent:#f0be3d; --accent-soft:rgba(240,190,61,0.20); }
+
+/* Amber Red */
+[data-theme="amber"][data-resolved="light"] { --bg:#fdf1ee; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#cf4128; --accent-soft:rgba(207,65,40,0.13); --label:#2d1611; }
+[data-theme="amber"][data-resolved="dark"]  { --bg:#110604; --bg-elevated:#231310; --bg-grouped:#231310; --accent:#ff7355; --accent-soft:rgba(255,115,85,0.20); }
+
+/* Frost White */
+[data-theme="frost"][data-resolved="light"] { --bg:#f0f6f9; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#3f8bac; --accent-soft:rgba(63,139,172,0.14); --label:#16242b; }
+[data-theme="frost"][data-resolved="dark"]  { --bg:#050b0e; --bg-elevated:#141f26; --bg-grouped:#141f26; --accent:#6ec5e8; --accent-soft:rgba(110,197,232,0.20); }
+
+/* Spiderweb Grey */
+[data-theme="web"][data-resolved="light"] { --bg:#f2f2f4; --bg-elevated:#ffffff; --bg-grouped:#ffffff; --accent:#5f6773; --accent-soft:rgba(95,103,115,0.14); --label:#1c1e22; }
+[data-theme="web"][data-resolved="dark"]  { --bg:#08090a; --bg-elevated:#191a1d; --bg-grouped:#191a1d; --accent:#a3adba; --accent-soft:rgba(163,173,186,0.20); }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; height: 100%; }
@@ -157,7 +207,7 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; color: va
 .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .cal-header .month { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
 .cal-nav { display: flex; gap: 6px; }
-.cal-nav button { background: var(--fill); border: none; border-radius: 50%; width: 34px; height: 34px; color: var(--accent); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.cal-nav button { background: var(--fill); border: none; border-radius: 50%; width: 34px; height: 34px; color: var(--accent); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; padding: 0; text-align: center; }
 .cal-nav button:active { background: var(--fill-2); }
 .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
 .cal-dow { text-align: center; font-size: 11px; font-weight: 600; color: var(--label-tertiary); padding-bottom: 6px; }
@@ -229,7 +279,18 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; color: va
 .sheet-grabber { width: 38px; height: 5px; border-radius: 3px; background: var(--label-tertiary); opacity: 0.5; margin: 8px auto 14px; }
 .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .sheet-head .title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
-.sheet-head .close { background: var(--fill); border: none; width: 30px; height: 30px; border-radius: 50%; color: var(--label-secondary); font-size: 17px; cursor: pointer; }
+/* Close button: flex-centre the glyph. Default button text rendering leaves the
+   × sitting low/left on mobile; centring an inline-flex box fixes it. */
+.sheet-head .close {
+  background: var(--fill); border: none; width: 30px; height: 30px; border-radius: 50%;
+  color: var(--label-secondary); cursor: pointer;
+  padding: 0; margin: 0; text-align: center;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 19px; line-height: 1; font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.sheet-head .close:active { background: var(--fill-2); }
 .dialog h3 { margin: 0 0 8px; font-size: 18px; }
 .dialog p { margin: 0 0 18px; color: var(--label-secondary); font-size: 15px; }
 
@@ -269,8 +330,65 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; color: va
 .rec-v { font-size: 16px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
 
 /* Row delete button */
-.row-del { background: var(--fill); border: none; color: var(--label-tertiary); width: 28px; height: 28px; border-radius: 50%; font-size: 18px; line-height: 1; cursor: pointer; flex: 0 0 28px; }
+.row-del {
+  background: var(--fill); border: none; color: var(--label-tertiary);
+  width: 28px; height: 28px; border-radius: 50%; flex: 0 0 28px;
+  padding: 0; margin: 0; text-align: center; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 .row-del:active { background: var(--fill-2); color: var(--pink); }
+
+/* Set-row remove (×) in the add/edit form */
+.set-line .rm, .ex-rm {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0; width: 28px; height: 28px; flex: 0 0 28px;
+  line-height: 1; text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Theme picker */
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.theme-swatch {
+  border: none; background: none; padding: 0; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.theme-chip {
+  width: 100%; aspect-ratio: 1.5; border-radius: 12px; position: relative;
+  border: 2px solid transparent; overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--separator);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.theme-swatch:active .theme-chip { transform: scale(0.95); }
+.theme-swatch.active .theme-chip { border-color: var(--accent); }
+.theme-chip .dot {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 42%; height: 42%; border-radius: 50%;
+}
+.theme-swatch .theme-name { font-size: 11px; color: var(--label-secondary); text-align: center; line-height: 1.25; }
+.theme-swatch.active .theme-name { color: var(--label); font-weight: 600; }
+.theme-check { position: absolute; right: 5px; top: 4px; font-size: 12px; color: #fff; opacity: 0; }
+.theme-swatch.active .theme-check { opacity: 1; }
+
+/* Legal documents */
+.legal-body { font-size: 15px; line-height: 1.6; color: var(--label); }
+.legal-body .lead { font-size: 16px; color: var(--label); }
+.legal-body h3 { font-size: 16px; font-weight: 600; margin: 22px 0 6px; letter-spacing: -0.01em; }
+.legal-body p { margin: 0 0 12px; color: var(--label-secondary); }
+.legal-body .lead { color: var(--label); }
+.legal-body ul { margin: 0 0 12px; padding-left: 20px; color: var(--label-secondary); }
+.legal-body li { margin-bottom: 6px; }
+.legal-body strong { color: var(--label); font-weight: 600; }
+.legal-body a { color: var(--accent); }
+
+.legal-page { max-width: 680px; margin: 0 auto; padding: calc(var(--safe-top) + 24px) 20px calc(40px + var(--safe-bottom)); }
+.legal-page h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 12px 0 4px; }
+.legal-back { display: inline-block; color: var(--accent); text-decoration: none; font-size: 16px; }
+.legal-updated { font-size: 13px; color: var(--label-tertiary); margin-bottom: 22px; }
+.legal-nav { margin-top: 34px; padding-top: 18px; border-top: 0.5px solid var(--separator); display: flex; flex-wrap: wrap; gap: 16px; }
+.legal-nav a { color: var(--accent); text-decoration: none; font-size: 15px; }
 
 .muted { color: var(--label-secondary); font-size: 14px; }
 .center-text { text-align: center; }

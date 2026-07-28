@@ -4,7 +4,7 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
-const APP_VERSION = '1.3.0'; // shown in Settings; reflects the app files actually loaded on this device
+const APP_VERSION = '1.5.0'; // shown in Settings; reflects the app files actually loaded on this device
 
 /* ---------- Common exercise library (merged with your own) ---------- */
 const COMMON_EXERCISES = [
@@ -48,6 +48,56 @@ const TYPE_SUGGESTIONS = [
 /* ---------- State ---------- */
 let data = { version: 1, workouts: [] };
 let calRef = new Date(); // calendar reference month
+
+/* ============================================================
+   THEMING — appearance mode + colour palette (hue only)
+   ============================================================ */
+const THEME_KEY = 'wt.theme';
+const MODE_KEY = 'wt.mode';
+const MODES = [ { k:'light', label:'Light' }, { k:'dark', label:'Dark' }, { k:'system', label:'System' } ];
+const THEMES = [
+  { k:'ocean',    name:'Ocean Blue',          light:'#0a84ff', dark:'#3aa0ff', bgL:'#eef4fb', bgD:'#000811' },
+  { k:'forest',   name:'Forest Green',        light:'#2e9e5b', dark:'#3ecb7d', bgL:'#eff5f0', bgD:'#050c08' },
+  { k:'midnight', name:'Midnight Blue',       light:'#4b5bd6', dark:'#818cff', bgL:'#eeeff8', bgD:'#04050f' },
+  { k:'eggshell', name:'Eggshell White',      light:'#94794a', dark:'#d9bb85', bgL:'#f7f3ea', bgD:'#0d0b07' },
+  { k:'sakura',   name:'Cherry Blossom Pink', light:'#d94f87', dark:'#ff8ab5', bgL:'#fbf0f5', bgD:'#12060a' },
+  { k:'cream',    name:'Cream Yellow',        light:'#b8891a', dark:'#f0be3d', bgL:'#fdf8e9', bgD:'#0e0c05' },
+  { k:'amber',    name:'Amber Red',           light:'#cf4128', dark:'#ff7355', bgL:'#fdf1ee', bgD:'#110604' },
+  { k:'frost',    name:'Frost White',         light:'#3f8bac', dark:'#6ec5e8', bgL:'#f0f6f9', bgD:'#050b0e' },
+  { k:'web',      name:'Spiderweb Grey',      light:'#5f6773', dark:'#a3adba', bgL:'#f2f2f4', bgD:'#08090a' },
+];
+
+function getMode() { return localStorage.getItem(MODE_KEY) || 'system'; }
+function getTheme() { return localStorage.getItem(THEME_KEY) || 'ocean'; }
+function systemPrefersDark() {
+  return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+}
+function resolvedMode() {
+  const m = getMode();
+  return m === 'system' ? (systemPrefersDark() ? 'dark' : 'light') : m;
+}
+function applyTheme() {
+  const root = document.documentElement;
+  const resolved = resolvedMode();
+  root.setAttribute('data-theme', getTheme());
+  root.setAttribute('data-resolved', resolved);
+  // keep the browser/status bar chrome in step with the palette
+  const t = THEMES.find(x => x.k === getTheme()) || THEMES[0];
+  const bar = resolved === 'dark' ? t.bgD : t.bgL;
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.remove());
+  const meta = document.createElement('meta');
+  meta.name = 'theme-color'; meta.content = bar;
+  document.head.appendChild(meta);
+}
+function setMode(m) { localStorage.setItem(MODE_KEY, m); applyTheme(); }
+function setTheme(t) { localStorage.setItem(THEME_KEY, t); applyTheme(); }
+// follow the OS when in System mode
+if (window.matchMedia) {
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const onChange = () => { if (getMode() === 'system') applyTheme(); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
+  else if (mq.addListener) mq.addListener(onChange);
+}
 
 /* ---------- PWA install ---------- */
 let deferredInstallPrompt = null;
@@ -777,10 +827,53 @@ function installCardHTML() {
     </div>`;
 }
 
+function themeSwatchHTML(t) {
+  const dark = resolvedMode() === 'dark';
+  const bg = dark ? t.bgD : t.bgL;
+  const dot = dark ? t.dark : t.light;
+  const active = getTheme() === t.k;
+  return `<button class="theme-swatch ${active?'active':''}" data-t="${t.k}" aria-label="${escapeHtml(t.name)}">
+    <span class="theme-chip" style="background:${bg}">
+      <span class="dot" style="background:${dot}"></span>
+      <span class="theme-check">✓</span>
+    </span>
+    <span class="theme-name">${escapeHtml(t.name)}</span>
+  </button>`;
+}
+
+function refreshThemeUI(sheet) {
+  const grid = sheet.querySelector('#theme-grid');
+  if (grid) grid.innerHTML = THEMES.map(t => themeSwatchHTML(t)).join('');
+  const seg = sheet.querySelector('#mode-seg');
+  if (seg) seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.m === getMode()));
+  bindThemeUI(sheet);
+}
+function bindThemeUI(sheet) {
+  const seg = sheet.querySelector('#mode-seg');
+  if (seg) seg.onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    setMode(b.dataset.m); refreshThemeUI(sheet);
+  };
+  const grid = sheet.querySelector('#theme-grid');
+  if (grid) grid.onclick = e => {
+    const b = e.target.closest('.theme-swatch'); if (!b) return;
+    setTheme(b.dataset.t); refreshThemeUI(sheet);
+  };
+}
+
 function openSettings() {
   const count = data.workouts.length;
   const body = `
     ${installCardHTML()}
+    <div class="card">
+      <h2>Appearance</h2>
+      <div class="segmented" id="mode-seg">
+        ${MODES.map(m => `<button data-m="${m.k}" class="${getMode()===m.k?'active':''}">${m.label}</button>`).join('')}
+      </div>
+      <div class="theme-grid" id="theme-grid" style="margin-top:14px">
+        ${THEMES.map(t => themeSwatchHTML(t)).join('')}
+      </div>
+    </div>
     <div class="card">
       <h2>Your data</h2>
       <div class="muted" style="margin-bottom:14px">${count} workout${count===1?'':'s'} stored privately on this device. Nothing is uploaded anywhere.</div>
@@ -799,9 +892,24 @@ function openSettings() {
       <button class="btn btn-danger" id="reset-btn">Erase all data</button>
     </div>
     <div class="hint center-text">Tip: clearing your browser history can erase this data — export a backup now and then.</div>
+    <div class="card" style="margin-top:16px">
+      <h2>About &amp; legal</h2>
+      <div class="list" style="box-shadow:none;border-radius:12px;overflow:hidden">
+        ${Object.keys(LEGAL).map(k => `
+          <div class="list-row" data-legal="${k}">
+            <div class="lr-main">
+              <div class="lr-title">${escapeHtml(LEGAL[k].title)}</div>
+              <div class="lr-sub">${escapeHtml(LEGAL[k].short)}</div>
+            </div>
+            <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+          </div>`).join('')}
+      </div>
+    </div>
     <div class="hint center-text" style="margin-top:18px">Workout Tracker · version ${APP_VERSION}</div>
+    <div class="hint center-text" style="margin-top:4px">Your data stays on this device.</div>
   `;
   const sheet = openSheet('Settings', body);
+  bindThemeUI(sheet);
   const installBtn = sheet.querySelector('#install-btn');
   if (installBtn) installBtn.onclick = async () => {
     if (!deferredInstallPrompt) return;
@@ -814,6 +922,7 @@ function openSettings() {
   sheet.querySelector('#import-file').onchange = e => importFile(e.target.files[0]);
   sheet.querySelector('#manage-ex').onclick = () => openManager('exercise');
   sheet.querySelector('#manage-types').onclick = () => openManager('type');
+  sheet.querySelectorAll('[data-legal]').forEach(r => r.onclick = () => openLegal(r.dataset.legal));
   sheet.querySelector('#reset-btn').onclick = () => showDialog('Erase all data?', 'This cannot be undone. Export a backup first if unsure.', [
     { label:'Cancel', class:'btn-secondary', onClick: closeModal },
     { label:'Erase', class:'btn-danger', onClick: () => { data = { version:1, workouts:[] }; save(); closeModal(); toast('All data erased'); switchTab('stats'); } },
@@ -862,6 +971,19 @@ function importFile(file) {
     } catch (e) { toast('Could not read that file'); }
   };
   reader.readAsText(file);
+}
+
+/* ============================================================
+   LEGAL DOCUMENTS
+   ============================================================ */
+function openLegal(key) {
+  const doc = (typeof LEGAL !== 'undefined') && LEGAL[key];
+  if (!doc) { toast('Document unavailable'); return; }
+  openSheet(doc.title, `
+    <div class="legal-updated">Last updated ${escapeHtml(LEGAL_UPDATED)}</div>
+    <div class="legal-body">${doc.body}</div>
+    <div style="height:20px"></div>
+  `);
 }
 
 /* ============================================================
@@ -1145,6 +1267,7 @@ function weightRow(w) {
    INIT
    ============================================================ */
 function init() {
+  applyTheme();
   load();
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));

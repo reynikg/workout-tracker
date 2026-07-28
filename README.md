@@ -128,11 +128,35 @@ app) stay on that device; data still never leaves it.
 index.html               app shell (tab bar, pages)
 styles.css               styling (light + dark, mobile-first)
 app.js                   all logic: storage, calendar, stats, charts, add/edit, import/export
+legal.js                 privacy policy, terms of use, health disclaimer (single source)
+legal.html               public pages for the above (?doc=privacy|terms|health)
 manifest.webmanifest     PWA metadata (name, icons, colors) for installing to home screen
 sw.js                    service worker — offline caching of the app + data
 icons/                   app icons (home screen, favicon, maskable)
 data/workouts-2026.json  your Jan–Jun 2026 log (importable sample data)
 ```
+
+## Legal documents
+
+The Privacy Policy, Terms of Use and Health Disclaimer live in `legal.js` (one source of
+truth) and are shown two ways:
+
+- **In the app**: Settings → About & legal.
+- **As public URLs**, which the App Store requires at submission time:
+  - `https://YOUR-USERNAME.github.io/workout-tracker/legal.html?doc=privacy`
+  - `https://YOUR-USERNAME.github.io/workout-tracker/legal.html?doc=terms`
+  - `https://YOUR-USERNAME.github.io/workout-tracker/legal.html?doc=health`
+
+Before publishing, edit the constants at the top of `legal.js`: `LEGAL_CONTACT` (support
+email), `LEGAL_UPDATED` (date) and `LEGAL_APP_NAME`.
+
+These documents describe the app as it behaves today: no accounts, no analytics, no data
+leaving the device. **If you later add sync, accounts, cloud backup, Apple Health access or
+any analytics, the Privacy Policy must be updated to match** — Apple checks that the policy
+matches the app's actual data use and the privacy labels you declare.
+
+They are a good-faith starting point written for this specific app, not legal advice. Have
+them reviewed by a qualified lawyer before you publish commercially.
 
 ## Notes on your data
 
