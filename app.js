@@ -4,7 +4,7 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
-const APP_VERSION = '1.2.0'; // shown in Settings; reflects the app files actually loaded on this device
+const APP_VERSION = '1.3.0'; // shown in Settings; reflects the app files actually loaded on this device
 
 /* ---------- Common exercise library (merged with your own) ---------- */
 const COMMON_EXERCISES = [
@@ -788,9 +788,10 @@ function openSettings() {
       <label class="btn btn-secondary" style="margin-top:10px;cursor:pointer">Import backup / data file<input type="file" id="import-file" accept="application/json,.json" hidden /></label>
     </div>
     <div class="card">
-      <h2>Sample data</h2>
-      <div class="muted" style="margin-bottom:14px">Load the 2026 workout log that came with this app.</div>
-      <button class="btn btn-secondary" id="load-2026">Import 2026 workouts</button>
+      <h2>Library</h2>
+      <div class="muted" style="margin-bottom:14px">Rename or remove exercises and workout types across your whole history.</div>
+      <button class="btn btn-secondary" id="manage-ex">Exercises</button>
+      <button class="btn btn-secondary" id="manage-types" style="margin-top:10px">Workout types</button>
     </div>
     <div class="card">
       <h2>Reset</h2>
@@ -811,7 +812,8 @@ function openSettings() {
   };
   sheet.querySelector('#export-btn').onclick = exportData;
   sheet.querySelector('#import-file').onchange = e => importFile(e.target.files[0]);
-  sheet.querySelector('#load-2026').onclick = loadSeed;
+  sheet.querySelector('#manage-ex').onclick = () => openManager('exercise');
+  sheet.querySelector('#manage-types').onclick = () => openManager('type');
   sheet.querySelector('#reset-btn').onclick = () => showDialog('Erase all data?', 'This cannot be undone. Export a backup first if unsure.', [
     { label:'Cancel', class:'btn-secondary', onClick: closeModal },
     { label:'Erase', class:'btn-danger', onClick: () => { data = { version:1, workouts:[] }; save(); closeModal(); toast('All data erased'); switchTab('stats'); } },
@@ -862,11 +864,164 @@ function importFile(file) {
   reader.readAsText(file);
 }
 
-function loadSeed() {
-  fetch('data/workouts-2026.json')
-    .then(r => { if (!r.ok) throw new Error('http'); return r.json(); })
-    .then(obj => { const n = mergeWorkouts(obj.workouts || []); closeModal(); toast(`Imported ${n} workout${n===1?'':'s'}`); switchTab('stats'); })
-    .catch(() => { closeModal(); showDialog('Could not load sample', 'When opening the file directly some browsers block this. Use a local server (see README) or the Import button with the workouts-2026.json file.', [{ label:'OK', class:'btn-secondary', onClick: closeModal }]); });
+/* ============================================================
+   LIBRARY MANAGER — rename / delete exercises and workout types
+   ============================================================ */
+function libraryItems(kind) {
+  const map = new Map(); // key -> { name, count }
+  if (kind === 'exercise') {
+    data.workouts.forEach(w => {
+      const seen = new Set();
+      w.exercises.forEach(e => {
+        const name = e.name.trim(); if (!name) return;
+        const k = name.toLowerCase();
+        if (!map.has(k)) map.set(k, { name, count: 0 });
+        // count once per workout so "57 times" = 57 sessions
+        if (!seen.has(k)) { map.get(k).count++; seen.add(k); }
+      });
+    });
+  } else {
+    data.workouts.forEach(w => {
+      const name = (w.type || '').trim(); if (!name) return;
+      const k = name.toLowerCase();
+      if (!map.has(k)) map.set(k, { name, count: 0 });
+      map.get(k).count++;
+    });
+  }
+  return [...map.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+function renameLibraryItem(kind, oldName, newName) {
+  const from = oldName.trim().toLowerCase();
+  const to = newName.trim();
+  if (!to) return false;
+  if (kind === 'exercise') {
+    data.workouts.forEach(w => {
+      w.exercises.forEach(e => { if (e.name.trim().toLowerCase() === from) e.name = to; });
+      // merge duplicates created by the rename (same name twice in one workout)
+      const merged = [];
+      w.exercises.forEach(e => {
+        const hit = merged.find(m => m.name.trim().toLowerCase() === e.name.trim().toLowerCase());
+        if (hit) hit.sets = hit.sets.concat(e.sets); else merged.push(e);
+      });
+      w.exercises = merged;
+    });
+  } else {
+    data.workouts.forEach(w => { if ((w.type||'').trim().toLowerCase() === from) w.type = to; });
+  }
+  save();
+  return true;
+}
+
+function deleteLibraryItem(kind, name) {
+  const key = name.trim().toLowerCase();
+  if (kind === 'exercise') {
+    data.workouts.forEach(w => { w.exercises = w.exercises.filter(e => e.name.trim().toLowerCase() !== key); });
+  } else {
+    data.workouts.forEach(w => { if ((w.type||'').trim().toLowerCase() === key) w.type = ''; });
+  }
+  save();
+}
+
+function openManager(kind) {
+  const title = kind === 'exercise' ? 'Exercises' : 'Workout types';
+  const sheet = openSheet(title, `<div id="mgr-body"></div>`);
+  drawManager(kind, sheet);
+}
+
+function drawManager(kind, sheet) {
+  const items = libraryItems(kind);
+  const body = sheet.querySelector('#mgr-body');
+  const noun = kind === 'exercise' ? 'exercise' : 'workout type';
+  if (!items.length) {
+    body.innerHTML = `<div class="card muted center-text">No ${noun}s logged yet.</div>`;
+    return;
+  }
+  const note = kind === 'exercise'
+    ? 'Tap a name to rename it everywhere (misspellings merge into the correct one). Deleting removes that exercise from every workout it appears in.'
+    : 'Tap a name to rename it everywhere. Deleting clears the label from those workouts — the workouts themselves are kept.';
+  body.innerHTML = `
+    <div class="hint" style="margin:0 4px 12px">${note}</div>
+    <div class="list">
+      ${items.map(it => `
+        <div class="list-row" data-name="${escapeHtml(it.name)}">
+          <div class="lr-main">
+            <div class="lr-title">${escapeHtml(it.name)}</div>
+            <div class="lr-sub">logged ${it.count} time${it.count===1?'':'s'}</div>
+          </div>
+          <button class="row-del" data-del="${escapeHtml(it.name)}" aria-label="Delete">×</button>
+        </div>`).join('')}
+    </div>
+    <div class="hint center-text" style="margin-top:12px">${items.length} ${noun}${items.length===1?'':'s'}</div>
+  `;
+  body.querySelectorAll('.list-row').forEach(row => {
+    row.onclick = (ev) => { if (ev.target.closest('.row-del')) return; promptRename(kind, row.dataset.name, sheet); };
+  });
+  body.querySelectorAll('[data-del]').forEach(b => b.onclick = (ev) => {
+    ev.stopPropagation();
+    promptDelete(kind, b.dataset.del, sheet);
+  });
+}
+
+function promptRename(kind, name, sheet) {
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay center';
+  overlay.style.zIndex = '120';
+  overlay.innerHTML = `<div class="dialog" style="text-align:left">
+    <h3 style="text-align:center">Rename</h3>
+    <p style="text-align:center">Applies to every workout using this name.</p>
+    <input class="input" id="rn-val" value="${escapeHtml(name)}" autocomplete="off" />
+    <div class="btn-row">
+      <button class="btn btn-secondary btn-sm" style="flex:1" id="rn-cancel">Cancel</button>
+      <button class="btn btn-primary btn-sm" style="flex:1" id="rn-ok">Save</button>
+    </div>
+  </div>`;
+  document.getElementById('modal-root').appendChild(overlay);
+  const input = overlay.querySelector('#rn-val');
+  input.focus();
+  const close = () => overlay.remove();
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.querySelector('#rn-cancel').onclick = close;
+  overlay.querySelector('#rn-ok').onclick = () => {
+    const v = input.value.trim();
+    if (!v) { toast('Name cannot be empty'); return; }
+    if (v.toLowerCase() !== name.toLowerCase() || v !== name) {
+      renameLibraryItem(kind, name, v);
+      toast('Renamed');
+    }
+    close();
+    drawManager(kind, sheet);
+  };
+}
+
+function promptDelete(kind, name, sheet) {
+  const items = libraryItems(kind);
+  const it = items.find(x => x.name.toLowerCase() === name.toLowerCase());
+  const n = it ? it.count : 0;
+  const msg = kind === 'exercise'
+    ? `Removes "${name}" from ${n} workout${n===1?'':'s'}. This cannot be undone.`
+    : `Clears the type "${name}" from ${n} workout${n===1?'':'s'}. The workouts are kept.`;
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay center';
+  overlay.style.zIndex = '120';
+  overlay.innerHTML = `<div class="dialog">
+    <h3>Delete ${kind === 'exercise' ? 'exercise' : 'type'}?</h3>
+    <p>${escapeHtml(msg)}</p>
+    <div class="btn-row">
+      <button class="btn btn-secondary btn-sm" style="flex:1" id="dl-cancel">Cancel</button>
+      <button class="btn btn-danger btn-sm" style="flex:1" id="dl-ok">Delete</button>
+    </div>
+  </div>`;
+  document.getElementById('modal-root').appendChild(overlay);
+  const close = () => overlay.remove();
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.querySelector('#dl-cancel').onclick = close;
+  overlay.querySelector('#dl-ok').onclick = () => {
+    deleteLibraryItem(kind, name);
+    toast('Deleted');
+    close();
+    drawManager(kind, sheet);
+  };
 }
 
 /* ---------- helpers ---------- */
@@ -875,7 +1030,7 @@ function emptyState(title, msg, showImport) {
   return `<div class="empty">
     <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12M6 12h12M6 17h8"></path><rect x="3" y="3" width="18" height="18" rx="4"></rect></svg>
     <h3>${escapeHtml(title)}</h3><p>${escapeHtml(msg)}</p>
-    ${showImport?'<button class="btn btn-primary" id="empty-add" style="max-width:240px;margin:0 auto">Add a workout</button><button class="btn btn-ghost" id="empty-import" style="max-width:240px;margin:8px auto 0">Import 2026 data</button>':''}
+    ${showImport?'<button class="btn btn-primary" id="empty-add" style="max-width:240px;margin:0 auto">Add a workout</button><button class="btn btn-ghost" id="empty-import" style="max-width:240px;margin:8px auto 0">Import a backup</button>':''}
   </div>`;
 }
 function bindEmpty(el){
@@ -894,6 +1049,14 @@ function upsertWeight(date, value) {
   save();
 }
 function deleteWeight(date) { data.weights = data.weights.filter(w => w.date !== date); save(); }
+/* Accepts "78,5" and "78.5" (phone keypads differ by locale). */
+function parseDecimal(str) {
+  if (str == null) return null;
+  const s = String(str).trim().replace(',', '.').replace(/[^0-9.\-]/g, '');
+  if (s === '' || s === '.' || s === '-') return null;
+  const v = parseFloat(s);
+  return isFinite(v) ? v : null;
+}
 function fmtKg(v){ const r = Math.round(v*10)/10; return Number.isInteger(r) ? String(r) : r.toFixed(1); }
 
 function renderWeight() {
@@ -936,7 +1099,7 @@ function renderWeight() {
       <label class="field-label">Date</label>
       <input class="input" type="date" id="wt-date" value="${today}" />
       <label class="field-label">Weight (kg)</label>
-      <input class="input" type="number" inputmode="decimal" step="0.1" id="wt-val" placeholder="e.g. 78.5" value="${existingToday?existingToday.value:''}" />
+      <input class="input" type="text" inputmode="decimal" autocomplete="off" id="wt-val" placeholder="e.g. 78,5 or 78.5" value="${existingToday?existingToday.value:''}" />
       <button class="btn btn-primary" id="wt-save" style="margin-top:14px">${existingToday?'Update':'Save'}</button>
     </div>
     ${ws.length ? `<div class="section-title">History</div><div class="list">${[...ws].reverse().map(weightRow).join('')}</div>` : ''}
@@ -952,9 +1115,9 @@ function renderWeight() {
   };
   saveBtn.onclick = () => {
     const d = dateEl.value;
-    const v = parseFloat(String(valEl.value).replace(',', '.'));
+    const v = parseDecimal(valEl.value);
     if (!d) { toast('Pick a date'); return; }
-    if (!isFinite(v) || v <= 0) { toast('Enter a valid weight'); return; }
+    if (v == null || v <= 0) { toast('Enter a valid weight'); return; }
     upsertWeight(d, Math.round(v*10)/10);
     toast('Weight saved');
     renderWeight();
