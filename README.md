@@ -118,8 +118,20 @@ offered; it won't work from a `file://` path.
 After installing, launch it from your home screen like any app. Your workouts (and the cached
 app) stay on that device; data still never leaves it.
 
-> When you change the app files and want installed copies to update, bump `CACHE = 'wt-cache-v1'`
-> to `v2` in `sw.js` so the service worker refreshes its cache.
+### Updating an installed app
+
+Installed copies update in place — no need to delete and re-add the home-screen shortcut
+(on iPhone, deleting it also deletes the workouts stored in it). In the app:
+**Settings → App version → Check for update**. When a newer version is on the server the
+app offers to export a backup, then **Update now** swaps to the new version and reloads.
+The app also checks quietly on launch and shows a red dot on the gear when an update is out.
+If the user never taps Update now, the new version takes over the next time the app is fully
+closed and reopened.
+
+**Releasing an update:** bump the version in all three places, then push:
+- `APP_VERSION` in `app.js`
+- `CACHE` in `sw.js` (e.g. `wt-cache-1.8.1`) — this is what makes phones download the new files
+- `version.json` — what "Check for update" compares against
 
 ---
 

@@ -149,6 +149,12 @@ body {
   display: flex; align-items: center; cursor: pointer; border-radius: 50%;
 }
 .icon-btn:active { background: var(--fill); }
+/* badge on the settings gear when an update is available */
+.icon-btn { position: relative; }
+.icon-btn.has-update::after {
+  content: ""; position: absolute; top: 4px; right: 4px; width: 9px; height: 9px; border-radius: 50%;
+  background: #ff3b30; box-shadow: 0 0 0 2px var(--bg);
+}
 
 /* Main / pages */
 #main { flex: 1; padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px); }
@@ -375,6 +381,8 @@ label.field-label { display: block; font-size: 13px; font-weight: 600; color: va
 .sheet-head .close:active { background: var(--fill-2); }
 .dialog h3 { margin: 0 0 8px; font-size: 18px; }
 .dialog p { margin: 0 0 18px; color: var(--label-secondary); font-size: 15px; }
+.btn-col { display: flex; flex-direction: column; gap: 8px; }
+.btn-col .btn { width: 100%; }
 
 /* Workout detail */
 .wd-type { font-size: 13px; font-weight: 600; color: var(--accent-text); text-transform: uppercase; letter-spacing: 0.03em; }

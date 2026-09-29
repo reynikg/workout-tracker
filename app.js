@@ -4,7 +4,7 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
-const APP_VERSION = '1.7.0'; // shown in Settings; reflects the app files actually loaded on this device
+const APP_VERSION = '1.8.0'; // shown in Settings; reflects the app files actually loaded on this device
 
 /* ---------- Tags (workout types / muscle groups) ---------- */
 const DEFAULT_TAGS = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Forearms', 'Legs', 'Core', 'Abs', 'Cardio', 'Full Body'];
@@ -1314,7 +1314,8 @@ function openSettings() {
       <button class="btn btn-danger" id="reset-btn">Erase all data</button>
     </div>
     <div class="hint center-text">Tip: clearing your browser history can erase this data — export a backup now and then.</div>
-    <div class="card" style="margin-top:16px">
+    ${updateCardHTML()}
+    <div class="card">
       <h2>About &amp; legal</h2>
       <div class="list" style="box-shadow:none;border-radius:12px;overflow:hidden">
         ${Object.keys(LEGAL).map(k => `
@@ -1341,6 +1342,7 @@ function openSettings() {
     closeModal();
   };
   sheet.querySelector('#export-btn').onclick = exportData;
+  bindUpdateCard(sheet);
   sheet.querySelector('#import-file').onchange = e => importFile(e.target.files[0]);
   sheet.querySelector('#manage-ex').onclick = () => openManager('exercise');
   sheet.querySelector('#manage-types').onclick = () => openManager('type');
@@ -1349,6 +1351,131 @@ function openSettings() {
     { label:'Cancel', class:'btn-secondary', onClick: closeModal },
     { label:'Erase', class:'btn-danger', onClick: () => { data = emptyData(); save(); closeModal(); toast('All data erased'); switchTab('stats'); } },
   ]);
+}
+
+/* ============================================================
+   UPDATES — version.json on the server says which version is latest.
+   The new version is installed in place by the service worker, so the
+   home-screen shortcut and the data in localStorage are kept.
+   ============================================================ */
+let latestVersion = null; // set when the server has a newer version than this one
+
+function isNewerVersion(a, b) {
+  const pa = String(a).split('.').map(Number), pb = String(b).split('.').map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const x = pa[i] || 0, y = pb[i] || 0;
+    if (x !== y) return x > y;
+  }
+  return false;
+}
+async function checkForUpdate() {
+  const res = await fetch(`version.json?t=${Date.now()}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const v = (await res.json()).version;
+  if (typeof v !== 'string') throw new Error('no version in version.json');
+  latestVersion = isNewerVersion(v, APP_VERSION) ? v : null;
+  document.getElementById('settings-btn').classList.toggle('has-update', !!latestVersion);
+  // start downloading the new version in the background so "Update now" is quick
+  if (latestVersion && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(() => {});
+  }
+  return latestVersion;
+}
+
+function updateCardHTML() {
+  return `<div class="card" style="margin-top:16px">
+    <h2>App version</h2>
+    <div class="muted" id="update-status" style="margin-bottom:14px">${latestVersion
+      ? `Version ${escapeHtml(latestVersion)} is available. You have ${APP_VERSION}.`
+      : `You have version ${APP_VERSION}.`}</div>
+    <button class="btn ${latestVersion ? 'btn-primary' : 'btn-secondary'}" id="update-btn">${latestVersion ? 'Update…' : 'Check for update'}</button>
+  </div>`;
+}
+function bindUpdateCard(sheet) {
+  const btn = sheet.querySelector('#update-btn'), status = sheet.querySelector('#update-status');
+  btn.onclick = async () => {
+    if (latestVersion) { openUpdateDialog(latestVersion); return; }
+    btn.disabled = true; btn.textContent = 'Checking…';
+    try {
+      const v = await checkForUpdate();
+      if (v) {
+        status.textContent = `Version ${v} is available. You have ${APP_VERSION}.`;
+        btn.className = 'btn btn-primary'; btn.textContent = 'Update…';
+        openUpdateDialog(v);
+      } else {
+        status.textContent = `You're on the latest version (${APP_VERSION}).`;
+        btn.textContent = 'Check for update';
+      }
+    } catch (e) {
+      status.textContent = navigator.onLine === false
+        ? "You're offline. Connect to the internet and try again."
+        : "Couldn't reach the server. Try again in a moment.";
+      btn.textContent = 'Check for update';
+    }
+    btn.disabled = false;
+  };
+}
+
+function openUpdateDialog(version) {
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay center';
+  overlay.style.zIndex = '120';
+  overlay.innerHTML = `<div class="dialog">
+    <h3>Update available</h3>
+    <p>Version ${escapeHtml(version)} is ready (you have ${APP_VERSION}). Your workouts stay on this device during the update, but it's a good idea to export a backup first.</p>
+    <div class="btn-col">
+      <button class="btn btn-secondary btn-sm" data-a="backup">Export backup</button>
+      <button class="btn btn-primary btn-sm" data-a="update">Update now</button>
+      <button class="btn btn-ghost btn-sm" data-a="later">Later</button>
+    </div>
+  </div>`;
+  document.getElementById('modal-root').appendChild(overlay);
+  const close = () => dismissOverlay(overlay);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.querySelector('[data-a="later"]').onclick = close;
+  const backup = overlay.querySelector('[data-a="backup"]');
+  backup.onclick = () => { exportData(); backup.textContent = 'Backup exported ✓'; };
+  const upd = overlay.querySelector('[data-a="update"]');
+  upd.onclick = () => {
+    overlay.querySelectorAll('button').forEach(b => b.disabled = true);
+    upd.textContent = 'Updating…';
+    applyUpdate();
+  };
+}
+
+/* Swap to the new version in place: let the waiting service worker take over, then reload. */
+async function applyUpdate() {
+  const sw = 'serviceWorker' in navigator ? navigator.serviceWorker : null;
+  const reg = sw ? await sw.getRegistration().catch(() => null) : null;
+  if (reg) {
+    try { await reg.update(); } catch (e) {}
+    const waiting = await waitingWorker(reg);
+    if (waiting) {
+      await new Promise(res => {
+        sw.addEventListener('controllerchange', res, { once: true });
+        waiting.postMessage({ type: 'skipWaiting' });
+        setTimeout(res, 5000);
+      });
+    } else {
+      // no new service worker came down (only content changed): drop the cached copy so files load fresh
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+  }
+  location.reload();
+}
+// The new worker once it has finished downloading, or null if there isn't one.
+function waitingWorker(reg) {
+  if (reg.waiting) return Promise.resolve(reg.waiting);
+  const w = reg.installing;
+  if (!w) return Promise.resolve(null);
+  return new Promise(resolve => {
+    const timer = setTimeout(() => resolve(reg.waiting), 30000);
+    w.addEventListener('statechange', () => {
+      if (w.state === 'installed') { clearTimeout(timer); resolve(w); }
+      if (w.state === 'redundant') { clearTimeout(timer); resolve(null); }
+    });
+  });
 }
 
 function exportData() {
@@ -1742,6 +1869,13 @@ function init() {
   }
   document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
   document.getElementById('settings-btn').onclick = openSettings;
+  // Say so once after an update has actually landed; then quietly check for a newer one
+  try {
+    const last = localStorage.getItem('wt.version');
+    if (last && last !== APP_VERSION) setTimeout(() => toast(`Updated to version ${APP_VERSION}`), 500);
+    localStorage.setItem('wt.version', APP_VERSION);
+  } catch (e) {}
+  if (navigator.onLine !== false) checkForUpdate().catch(() => {});
   // iOS Safari only applies :active press states when a touch listener exists
   document.addEventListener('touchstart', () => {}, { passive: true });
   let ticking = false;
