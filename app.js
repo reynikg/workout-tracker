@@ -4,7 +4,7 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
-const APP_VERSION = '1.6.0'; // shown in Settings; reflects the app files actually loaded on this device
+const APP_VERSION = '1.7.0'; // shown in Settings; reflects the app files actually loaded on this device
 
 /* ---------- Tags (workout types / muscle groups) ---------- */
 const DEFAULT_TAGS = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Forearms', 'Legs', 'Core', 'Abs', 'Cardio', 'Full Body'];
@@ -197,6 +197,50 @@ function isoWeekKey(d) {
 }
 function weekStart(d){ const x=new Date(d); const day=(x.getDay()+6)%7; x.setDate(x.getDate()-day); x.setHours(0,0,0,0); return x; }
 
+/* ---------- Motion ---------- */
+function prefersReducedMotion() { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+/* A spring in Apple's terms: damping ratio (1 = settles without overshoot) and response
+   (seconds; lower is snappier). It starts from the current value and velocity, so any
+   animation can be grabbed and re-targeted mid-flight without a jump. */
+function spring({ from, to, velocity = 0, damping = 1, response = 0.35, onUpdate, onDone }) {
+  const k = Math.pow(2 * Math.PI / response, 2), c = 4 * Math.PI * damping / response;
+  let x = from, v = velocity, last = performance.now(), raf = 0, stopped = false;
+  function step(now) {
+    if (stopped) return;
+    const dt = Math.min(0.064, (now - last) / 1000); last = now;
+    const n = Math.max(1, Math.ceil(dt / 0.004)), h = dt / n; // fixed sub-steps stay stable on slow frames
+    for (let i = 0; i < n; i++) { v += (-k * (x - to) - c * v) * h; x += v * h; }
+    if (Math.abs(v) < 4 && Math.abs(x - to) < 0.5) { stopped = true; onUpdate(to); if (onDone) onDone(); return; }
+    onUpdate(x);
+    raf = requestAnimationFrame(step);
+  }
+  raf = requestAnimationFrame(step);
+  return { stop() { stopped = true; cancelAnimationFrame(raf); } };
+}
+// Where a flick would come to rest (Apple's scroll-deceleration projection), px/s -> px
+function project(velocity, rate = 0.998) { return (velocity / 1000) * rate / (1 - rate); }
+// Progressive resistance past an edge instead of a hard stop
+function rubberband(overshoot, dimension, c = 0.55) { return (overshoot * dimension * c) / (dimension + c * Math.abs(overshoot)); }
+// Tick numbers up and grow bars from zero after a render
+function animateIn(root) {
+  const bars = root.querySelectorAll('[data-w]');
+  if (prefersReducedMotion()) { bars.forEach(b => b.style.width = b.dataset.w); return; }
+  root.querySelectorAll('[data-count]').forEach(el => {
+    const to = +el.dataset.count, suffix = el.dataset.suffix || '', t0 = performance.now();
+    if (!to) return;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / 550), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmtNum(to * e) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(tick);
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => bars.forEach(b => b.style.width = b.dataset.w)));
+}
+// Charts scroll horizontally; open them on the most recent data
+function scrollToLatest(wrap) { if (wrap) wrap.scrollLeft = wrap.scrollWidth; }
+
 /* ---------- Parsing inputs ---------- */
 /* Reps box: "12", "30s", "30 sec", "45 seconds", "1 min", or a whole "3 x 12" / "3x30s".
    Returns { reps, sets?, unit? } — sets/unit only when the text spells them out. */
@@ -291,12 +335,22 @@ function switchTab(tab) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + tab).classList.add('active');
   document.getElementById('page-title').textContent = PAGE_TITLES[tab];
+  document.getElementById('bar-title').textContent = PAGE_TITLES[tab];
   document.getElementById('main').scrollTop = 0;
   window.scrollTo(0, 0);
+  updateTopbar();
   if (tab === 'stats') renderStats();
   if (tab === 'calendar') renderCalendar();
   if (tab === 'weight') renderWeight();
   if (tab === 'add') renderAddPage();
+}
+
+// Bar gets its material once content scrolls under it; small title once the large one is gone
+function updateTopbar() {
+  const bar = document.querySelector('.topbar'), title = document.getElementById('page-title');
+  const y = window.scrollY;
+  bar.classList.toggle('scrolled', y > 0);
+  bar.classList.toggle('titled', y > title.offsetTop + title.offsetHeight - bar.offsetHeight);
 }
 
 /* ============================================================
@@ -388,10 +442,10 @@ function renderStats() {
 
   el.innerHTML = `
     <div class="stat-grid">
-      <div class="stat-tile accent"><div class="num">${all.length}</div><div class="lbl">Workouts</div><div class="sub">all time</div></div>
-      <div class="stat-tile green"><div class="num">${fmtNum(totReps)}</div><div class="lbl">Reps crushed</div><div class="sub">all time</div></div>
-      <div class="stat-tile orange"><div class="num">${fmtNum(totSets)}</div><div class="lbl">Sets logged</div><div class="sub">all time</div></div>
-      <div class="stat-tile purple"><div class="num">${heroStreak}</div><div class="lbl">Best streak</div><div class="sub">days in a row</div></div>
+      <div class="stat-tile accent"><div class="num" data-count="${all.length}">${all.length}</div><div class="lbl">Workouts</div><div class="sub">all time</div></div>
+      <div class="stat-tile"><div class="num" data-count="${totReps}">${fmtNum(totReps)}</div><div class="lbl">Reps crushed</div><div class="sub">all time</div></div>
+      <div class="stat-tile"><div class="num" data-count="${totSets}">${fmtNum(totSets)}</div><div class="lbl">Sets logged</div><div class="sub">all time</div></div>
+      <div class="stat-tile"><div class="num" data-count="${heroStreak}">${heroStreak}</div><div class="lbl">Best streak</div><div class="sub">days in a row</div></div>
     </div>
 
     <div class="segmented" id="win-seg">
@@ -399,22 +453,22 @@ function renderStats() {
     </div>
 
     <div class="card">
-      <h2>Most reps · ${escapeHtml(winText)}</h2>
+      <h2>Most reps<span class="h-sub">${escapeHtml(winText)}</span></h2>
       ${leaderboardHTML(byReps, 'reps', r => `${fmtNum(r.reps)}`)}
     </div>
 
     <div class="card">
-      <h2>Done most often · ${escapeHtml(winText)}</h2>
+      <h2>Done most often<span class="h-sub">${escapeHtml(winText)}</span></h2>
       ${leaderboardHTML(byTimes, 'times', r => `${r.times}×`)}
     </div>
 
     <div class="card">
-      <h2>Records · ${escapeHtml(winText)}</h2>
+      <h2>Records<span class="h-sub">${escapeHtml(winText)}</span></h2>
       ${recordsHTML(statRecords(ws))}
     </div>
 
     <div class="card">
-      <h2>Muscle groups · ${escapeHtml(winText)}</h2>
+      <h2>Muscle groups<span class="h-sub">${escapeHtml(winText)}</span></h2>
       <div id="muscle-breakdown">${muscleBreakdownHTML(ws)}</div>
     </div>
 
@@ -428,12 +482,16 @@ function renderStats() {
       <div class="chart-wrap" id="freq-chart"></div>
     </div>
   `;
-  document.getElementById('freq-chart').innerHTML = freqChartSVG();
+  const freq = document.getElementById('freq-chart');
+  freq.innerHTML = freqChartSVG();
+  scrollToLatest(freq);
+  animateIn(el);
   document.getElementById('win-seg').onclick = e => { const b = e.target.closest('button'); if (!b) return; statWindow = b.dataset.k; renderStats(); };
   document.getElementById('freq-seg').onclick = e => {
     const b = e.target.closest('button'); if (!b) return;
     freqMode = b.dataset.m;
-    document.getElementById('freq-chart').innerHTML = freqChartSVG();
+    freq.innerHTML = freqChartSVG();
+    scrollToLatest(freq);
     document.querySelectorAll('#freq-seg button').forEach(x => x.classList.toggle('active', x === b));
   };
 }
@@ -447,9 +505,9 @@ function leaderboardHTML(rows, kind, valFn) {
       <div class="lb-rank" style="${i<3?`background:${medals[i]};color:#1d1d1f`:''}">${i+1}</div>
       <div class="lb-main">
         <div class="lb-name">${escapeHtml(r.name)}</div>
-        <div class="lb-bar"><span style="width:${Math.max(4,(r[kind]/max)*100)}%"></span></div>
+        <div class="lb-bar"><span style="width:0" data-w="${Math.max(4,(r[kind]/max)*100)}%"></span></div>
       </div>
-      <div class="lb-val">${valFn(r)}</div>
+      <div class="lb-val" data-count="${r[kind]}" data-suffix="${kind === 'times' ? '×' : ''}">${valFn(r)}</div>
     </div>`).join('');
 }
 function recordsHTML(rec) {
@@ -499,7 +557,7 @@ function muscleBreakdownHTML(ws) {
   return arr.map(([name, c]) => `
     <div class="bd-row">
       <div class="bd-name">${escapeHtml(name)}</div>
-      <div class="bd-bar" style="width:${Math.max(6, (c/max)*120)}px"></div>
+      <div class="bd-bar" style="width:0" data-w="${Math.max(6, (c/max)*120)}px"></div>
       <div class="bd-count">${c}</div>
     </div>`).join('');
 }
@@ -519,7 +577,7 @@ function barChartSVG(buckets, opts={}) {
     const h = (b.value/max) * chartH;
     const y = padTop + (chartH - h);
     const last = i === buckets.length-1;
-    bars += `<rect class="bar ${last?'':'dim'}" x="${x}" y="${y}" width="${barW}" height="${Math.max(h,1)}" rx="5"></rect>`;
+    bars += `<rect class="bar ${last?'':'dim'}" x="${x}" y="${y}" width="${barW}" height="${Math.max(h,1)}" rx="5" style="animation-delay:${Math.min(i, 20) * 25}ms"></rect>`;
     if (b.value>0) bars += `<text x="${x+barW/2}" y="${y-6}" text-anchor="middle" style="font-weight:600;fill:var(--label)">${b.value}</text>`;
     bars += `<text x="${x+barW/2}" y="${H-9}" text-anchor="middle">${escapeHtml(String(b.label))}</text>`;
   });
@@ -529,8 +587,9 @@ function barChartSVG(buckets, opts={}) {
 function lineChartSVG(points, opts={}) {
   const H = 220, padTop = 18, padBottom = 30, padL = 38, padR = 14;
   const n = points.length;
-  const step = Math.max(34, Math.min(70, 520 / n));
-  const W = Math.max(320, padL + padR + (n-1)*step);
+  // opts.width fits the whole series to the card (keeps the y-axis in view); otherwise scroll
+  const step = opts.width ? (opts.width - padL - padR) / Math.max(1, n-1) : Math.max(34, Math.min(70, 520 / n));
+  const W = opts.width || Math.max(320, padL + padR + (n-1)*step);
   const vals = points.map(p => p.value);
   let min = Math.min(...vals), max = Math.max(...vals);
   if (min === max) { min = min - 1; max = max + 1; }
@@ -550,13 +609,17 @@ function lineChartSVG(points, opts={}) {
   let dpath = '', dots = '';
   points.forEach((p,i) => { dpath += (i===0?'M':'L') + X(i) + ' ' + Y(p.value) + ' '; });
   const area = `M${X(0)} ${Y(min)} ` + points.map((p,i)=>`L${X(i)} ${Y(p.value)}`).join(' ') + ` L${X(n-1)} ${Y(min)} Z`;
-  points.forEach((p,i) => { dots += `<circle class="dot" cx="${X(i)}" cy="${Y(p.value)}" r="3.5"></circle>`; });
+  points.forEach((p,i) => { if (i < n-1) dots += `<circle class="dot" cx="${X(i)}" cy="${Y(p.value)}" r="3.5"></circle>`; });
+  // the latest reading is the one that matters: bigger point, labelled
+  const lx = X(n-1), ly = Y(points[n-1].value), fmt = opts.fmt || (v => v);
+  dots += `<circle class="dot dot-last" cx="${lx}" cy="${ly}" r="6"></circle>`
+    + `<text class="pt-label" x="${lx - 10}" y="${ly - 12}" text-anchor="end">${escapeHtml(String(fmt(points[n-1].value)))}</text>`;
   // x labels — sparse
   let xl = '';
   const labelEvery = Math.ceil(n / 6);
-  points.forEach((p,i) => { if (i % labelEvery === 0 || i === n-1) xl += `<text x="${X(i)}" y="${H-9}" text-anchor="middle">${escapeHtml(p.label)}</text>`; });
+  points.forEach((p,i) => { if ((i % labelEvery === 0 && n-1-i >= labelEvery/2) || i === n-1) xl += `<text x="${i === n-1 ? W-2 : X(i)}" y="${H-9}" text-anchor="${i === n-1 ? 'end' : 'middle'}">${escapeHtml(p.label)}</text>`; });
   return `<svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-    ${grid}<path class="area-path" d="${area}"></path><path class="line-path" d="${dpath}"></path>${dots}${xl}</svg>`;
+    ${grid}<path class="area-path" d="${area}"></path><path class="line-path" d="${dpath}" pathLength="1"></path>${dots}${xl}</svg>`;
 }
 
 /* ============================================================
@@ -666,7 +729,13 @@ function renderAddPage() {
   const el = document.getElementById('page-add');
   el.innerHTML = '';
   el.appendChild(buildWorkoutForm(null, {
-    onSave: (w) => { data.workouts.push(w); save(); toast('Workout saved'); switchTab('calendar'); },
+    onSave: (w) => {
+      data.workouts.push(w); save();
+      calRef = dateObj(w.date);
+      switchTab('calendar');
+      showDoneHUD('Saved');
+      setTimeout(() => pulseDay(w.date), 650);
+    },
     onCancelLabel: null,
     inline: true,
   }));
@@ -675,7 +744,12 @@ function openEditForm(id) {
   const existing = data.workouts.find(w => w.id === id);
   if (!existing) return;
   const form = buildWorkoutForm(existing, {
-    onSave: (w) => { const i = data.workouts.findIndex(x => x.id === id); data.workouts[i] = w; save(); closeModal(); toast('Workout updated'); renderCalendar(); },
+    onSave: (w) => {
+      const i = data.workouts.findIndex(x => x.id === id); data.workouts[i] = w; save();
+      closeModal(); renderCalendar();
+      showDoneHUD('Updated');
+      setTimeout(() => pulseDay(w.date), 650);
+    },
     onCancelLabel: 'Cancel',
     onCancel: closeModal,
   });
@@ -937,13 +1011,13 @@ function promptExerciseTags(name, lead, onDone, onCancel) {
   const sync = () => { ok.disabled = !selected.length; };
   tagPicker(overlay.querySelector('.et-picker'), selected, { lead, onChange: sync });
   sync();
-  const cancel = () => { overlay.remove(); if (onCancel) onCancel(); };
+  const cancel = () => { dismissOverlay(overlay); if (onCancel) onCancel(); };
   overlay.addEventListener('click', e => { if (e.target === overlay) cancel(); });
   overlay.querySelector('[data-a="cancel"]').onclick = cancel;
   ok.onclick = () => {
     if (!selected.length) return;
     setExerciseTags(name, selected);
-    overlay.remove();
+    dismissOverlay(overlay);
     onDone(exerciseTags(name));
   };
 }
@@ -1003,7 +1077,7 @@ function openSheet(title, bodyHtml) {
   closeModal();
   const root = document.getElementById('modal-root');
   const overlay = document.createElement('div');
-  overlay.className = 'modal-overlay';
+  overlay.className = 'modal-overlay sheet-overlay';
   overlay.innerHTML = `<div class="sheet">
     <div class="sheet-grabber"></div>
     <div class="sheet-head"><div class="title">${escapeHtml(title)}</div><button class="close" aria-label="Close">×</button></div>
@@ -1012,8 +1086,96 @@ function openSheet(title, bodyHtml) {
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   overlay.querySelector('.close').onclick = closeModal;
   root.appendChild(overlay);
+  sheetPhysics(overlay, overlay.querySelector('.sheet'));
   return overlay;
 }
+
+/* Sheet motion: springs up from below, follows the finger 1:1 when dragged down
+   (from the grabber/header, or from the content when it's scrolled to the top),
+   and on release projects the flick to decide between dismissing and settling back.
+   Every animation starts from the sheet's current position, so it can be caught mid-flight. */
+function sheetPhysics(overlay, sheet) {
+  const reduce = prefersReducedMotion();
+  let y = 0, anim = null, drag = null;
+  const height = () => sheet.offsetHeight || window.innerHeight;
+  function set(v) {
+    y = v;
+    sheet.style.transform = v ? `translate3d(0, ${v}px, 0)` : '';
+    overlay.style.backgroundColor = `rgba(0,0,0,${0.4 * Math.max(0, Math.min(1, 1 - v / height()))})`;
+  }
+  function animateTo(target, velocity, opts, done) {
+    if (anim) anim.stop();
+    anim = spring({ from: y, to: target, velocity, damping: opts.damping, response: opts.response, onUpdate: set,
+      onDone: () => { anim = null; if (done) done(); } });
+  }
+  overlay._close = (velocity = 0) => {
+    drag = null;
+    if (reduce) { overlay.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200 }).onfinish = () => overlay.remove(); return; }
+    animateTo(height(), Math.max(0, velocity), { damping: 1, response: 0.3 }, () => overlay.remove());
+  };
+  if (reduce) { set(0); overlay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 }); return; }
+  set(height());
+  animateTo(0, 0, { damping: 1, response: 0.38 });
+
+  function begin(clientY) {
+    if (anim) { anim.stop(); anim = null; }
+    drag = { grab: clientY - y, hist: [] };
+    sheet.classList.add('dragging');
+  }
+  function move(clientY) {
+    let v = clientY - drag.grab;
+    if (v < 0) v = -rubberband(-v, height()); // soft resistance above the resting position
+    set(v);
+    drag.hist.push({ t: performance.now(), y: clientY });
+    if (drag.hist.length > 6) drag.hist.shift();
+  }
+  function end() {
+    const h = drag.hist; let vel = 0;
+    if (h.length > 1 && performance.now() - h[h.length - 1].t < 80) { // a finger that paused has no fling
+      const a = h[0], b = h[h.length - 1];
+      if (b.t > a.t) vel = (b.y - a.y) / ((b.t - a.t) / 1000);
+    }
+    drag = null; sheet.classList.remove('dragging');
+    if (y + project(vel) > height() * 0.5) dismissOverlay(overlay, vel);
+    else animateTo(0, vel, { damping: 0.8, response: 0.3 }); // came from a throw, so allow a touch of bounce
+  }
+
+  // touch: from the header anywhere, from the content only when it's scrolled to the top and pulled down
+  let start = null;
+  sheet.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1 || overlay._closing || e.target.closest('input[type=range], .ac-list, .chart-wrap')) { start = null; return; }
+    const t = e.touches[0];
+    start = { x: t.clientX, y: t.clientY, head: !!e.target.closest('.sheet-grabber, .sheet-head'), top: sheet.scrollTop <= 0 };
+  }, { passive: true });
+  sheet.addEventListener('touchmove', e => {
+    if (!start) return;
+    const t = e.touches[0];
+    if (!drag) {
+      const dx = t.clientX - start.x, dy = t.clientY - start.y;
+      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) { start = null; return; } // horizontal: not ours
+      if (Math.abs(dy) < 10) return;                                                 // hysteresis
+      if (!start.head && !(start.top && dy > 0 && sheet.scrollTop <= 0)) { start = null; return; }
+      begin(t.clientY);
+    }
+    e.preventDefault();
+    move(t.clientY);
+  }, { passive: false });
+  const touchEnd = () => { start = null; if (drag) end(); };
+  sheet.addEventListener('touchend', touchEnd);
+  sheet.addEventListener('touchcancel', touchEnd);
+
+  // mouse: drag by the grabber or header
+  sheet.querySelectorAll('.sheet-grabber, .sheet-head').forEach(el => el.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('button') || overlay._closing) return;
+    el.setPointerCapture(e.pointerId);
+    begin(e.clientY);
+    const mv = ev => move(ev.clientY);
+    const up = () => { el.removeEventListener('pointermove', mv); el.removeEventListener('pointerup', up); if (drag) end(); };
+    el.addEventListener('pointermove', mv);
+    el.addEventListener('pointerup', up);
+  }));
+}
+
 function showDialog(title, msg, buttons) {
   closeModal();
   const root = document.getElementById('modal-root');
@@ -1027,7 +1189,34 @@ function showDialog(title, msg, buttons) {
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   root.appendChild(overlay);
 }
-function closeModal() { document.getElementById('modal-root').innerHTML = ''; }
+function closeModal() { [...document.getElementById('modal-root').children].forEach(o => dismissOverlay(o)); }
+// Sheets slide back down the way they came; dialogs fade and shrink slightly
+function dismissOverlay(overlay, velocity) {
+  if (overlay._closing) return;
+  overlay._closing = true;
+  overlay.style.pointerEvents = 'none';
+  if (overlay._close) { overlay._close(velocity); return; }
+  overlay.classList.add('closing');
+  setTimeout(() => overlay.remove(), 200);
+}
+
+/* Confirmation HUD: checkmark draws itself, then the HUD fades away */
+function showDoneHUD(label) {
+  document.querySelectorAll('.hud').forEach(h => h.remove());
+  const hud = document.createElement('div');
+  hud.className = 'hud';
+  hud.setAttribute('role', 'status');
+  hud.innerHTML = `<svg viewBox="0 0 52 52" width="56" height="56" aria-hidden="true"><path d="M14 27l8 8 16-17" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg><div>${escapeHtml(label)}</div>`;
+  document.body.appendChild(hud);
+  setTimeout(() => { hud.classList.add('out'); setTimeout(() => hud.remove(), 260); }, 950);
+}
+// Draw the eye to the day that was just saved
+function pulseDay(date) {
+  const cell = document.querySelector(`#page-calendar .cal-cell[data-date="${date}"]`);
+  if (!cell || prefersReducedMotion()) return;
+  cell.classList.remove('pulse'); void cell.offsetWidth; cell.classList.add('pulse');
+  cell.addEventListener('animationend', () => cell.classList.remove('pulse'), { once: true });
+}
 let toastTimer = null;
 function toast(msg) {
   document.querySelectorAll('.toast').forEach(t => t.remove());
@@ -1384,7 +1573,7 @@ function promptRename(kind, name, sheet) {
   } else {
     input.focus();
   }
-  const close = () => overlay.remove();
+  const close = () => dismissOverlay(overlay);
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.querySelector('#rn-cancel').onclick = close;
   ok.onclick = () => {
@@ -1417,7 +1606,7 @@ function promptDelete(kind, name, sheet) {
     </div>
   </div>`;
   document.getElementById('modal-root').appendChild(overlay);
-  const close = () => overlay.remove();
+  const close = () => dismissOverlay(overlay);
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.querySelector('#dl-cancel').onclick = close;
   overlay.querySelector('#dl-ok').onclick = () => {
@@ -1469,13 +1658,8 @@ function renderWeight() {
   const today = todayStr();
   const existingToday = ws.find(w => w.date === today);
 
-  let chart;
-  if (ws.length >= 2) {
-    const points = ws.map(w => ({ label: `${dateObj(w.date).getDate()} ${MONTHS[dateObj(w.date).getMonth()]}`, value: w.value, date: w.date }));
-    chart = lineChartSVG(points, { unitLabel: 'kg' });
-  } else {
-    chart = '<div class="muted center-text" style="padding:28px">Log at least two days to see your trend.</div>';
-  }
+  const points = ws.map(w => ({ label: `${dateObj(w.date).getDate()} ${MONTHS[dateObj(w.date).getMonth()]}`, value: w.value, date: w.date }));
+  const chart = ws.length >= 2 ? '' : '<div class="muted center-text" style="padding:28px">Log at least two days to see your trend.</div>';
 
   let tiles = '';
   if (ws.length) {
@@ -1486,9 +1670,9 @@ function renderWeight() {
     tiles = `
       <div class="stat-grid">
         <div class="stat-tile accent"><div class="num">${fmtKg(latest.value)}</div><div class="lbl">Current (kg)</div><div class="sub">${fmtDateLong(latest.date)}</div></div>
-        <div class="stat-tile ${change<=0?'green':'orange'}"><div class="num">${sign}${fmtKg(change)}</div><div class="lbl">Since start</div><div class="sub">${ws.length} entr${ws.length===1?'y':'ies'}</div></div>
-        <div class="stat-tile purple"><div class="num">${fmtKg(lo)}</div><div class="lbl">Lowest</div></div>
-        <div class="stat-tile orange"><div class="num">${fmtKg(hi)}</div><div class="lbl">Highest</div></div>
+        <div class="stat-tile"><div class="num">${sign}${fmtKg(change)}</div><div class="lbl">Since start</div><div class="sub">${ws.length} entr${ws.length===1?'y':'ies'}</div></div>
+        <div class="stat-tile"><div class="num">${fmtKg(lo)}</div><div class="lbl">Lowest</div></div>
+        <div class="stat-tile"><div class="num">${fmtKg(hi)}</div><div class="lbl">Highest</div></div>
       </div>`;
   }
 
@@ -1509,6 +1693,8 @@ function renderWeight() {
     ${ws.length ? `<div class="section-title">History</div><div class="list">${[...ws].reverse().map(weightRow).join('')}</div>` : ''}
   `;
 
+  const wrap = el.querySelector('.chart-wrap');
+  if (ws.length >= 2) wrap.innerHTML = lineChartSVG(points, { unitLabel: 'kg', fmt: fmtKg, width: wrap.clientWidth });
   const dateEl = el.querySelector('#wt-date');
   const valEl = el.querySelector('#wt-val');
   const saveBtn = el.querySelector('#wt-save');
@@ -1556,6 +1742,14 @@ function init() {
   }
   document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
   document.getElementById('settings-btn').onclick = openSettings;
+  // iOS Safari only applies :active press states when a touch listener exists
+  document.addEventListener('touchstart', () => {}, { passive: true });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; updateTopbar(); });
+  }, { passive: true });
   // First run: offer to load the bundled 2026 data
   if (!data.workouts.length && !localStorage.getItem('wt.seen')) {
     localStorage.setItem('wt.seen', '1');
