@@ -4,7 +4,8 @@ A clean, mobile-first web app for logging gym/home workouts and seeing your prog
 Pure HTML, CSS and JavaScript — no build step, no server, no accounts.
 
 - Calendar view of every workout day
-- Add workouts fast: date, type, exercises with autocomplete, sets/reps and weight
+- Add workouts fast: date, workout-type tags (Chest, Back, Core…), exercise suggestions ordered by those tags,
+  sets × reps (or seconds for holds like planks) and weight
 - Game-style stats: total reps crushed, best streak, leaderboards for most reps and most-trained exercises (with a time-window filter), records, and a consistency chart
 - Bodyweight tracker: log your weight per day and see the trend graph
 - Your data is stored **only in your browser** (localStorage) — nothing is uploaded

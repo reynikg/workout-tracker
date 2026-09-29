@@ -4,49 +4,74 @@
    ============================================================ */
 
 const STORAGE_KEY = 'workoutTracker.v1';
-const APP_VERSION = '1.5.0'; // shown in Settings; reflects the app files actually loaded on this device
+const APP_VERSION = '1.6.0'; // shown in Settings; reflects the app files actually loaded on this device
+
+/* ---------- Tags (workout types / muscle groups) ---------- */
+const DEFAULT_TAGS = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Forearms', 'Legs', 'Core', 'Abs', 'Cardio', 'Full Body'];
+// spellings seen in older logs -> canonical tag
+const TAG_ALIASES = {
+  bicep:'Biceps', biceps:'Biceps', tricep:'Triceps', triceps:'Triceps', shoulder:'Shoulders', shoulders:'Shoulders',
+  leg:'Legs', legs:'Legs', ab:'Abs', abs:'Abs', core:'Core', corr:'Core', chest:'Chest', back:'Back', cardio:'Cardio',
+  forearm:'Forearms', forearms:'Forearms', everything:'Full Body', 'full body':'Full Body', fullbody:'Full Body',
+};
+function normTag(t) {
+  const s = String(t || '').trim().replace(/\s+/g, ' ');
+  if (!s) return '';
+  return TAG_ALIASES[s.toLowerCase()] || s.charAt(0).toUpperCase() + s.slice(1);
+}
+function uniqTags(tags) {
+  const seen = new Set();
+  return tags.filter(t => { if (!t) return false; const k = t.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+}
+function hasTag(tags, t) { const k = t.toLowerCase(); return tags.some(x => x.toLowerCase() === k); }
+// Old combined types: "Back & bicep", "Chest & triceps & shoulders", "Back and biceps" -> separate tags
+function parseTypeTags(type) {
+  return uniqTags(String(type || '').split(/\s*(?:&|,|\+|\/|\band\b)\s*/i).map(normTag));
+}
 
 /* ---------- Common exercise library (merged with your own) ---------- */
 const COMMON_EXERCISES = [
   // Chest
-  ['Chest press', 'Chest'], ['Chest press close', 'Chest'], ['Chest squeeze', 'Chest'],
-  ['Pec flies', 'Chest'], ['Inclined bench press', 'Chest'], ['Inclined dumbbell press', 'Chest'],
-  ['Bench press', 'Chest'], ['Push-up', 'Chest'], ['Cable crossover', 'Chest'], ['Dips', 'Chest'],
+  ['Chest press', ['Chest','Triceps']], ['Chest press close', ['Chest','Triceps']], ['Chest squeeze', ['Chest']],
+  ['Pec flies', ['Chest']], ['Inclined bench press', ['Chest','Shoulders']], ['Inclined dumbbell press', ['Chest','Shoulders']],
+  ['Bench press', ['Chest','Triceps']], ['Push-ups', ['Chest','Triceps']], ['Cable crossover', ['Chest']], ['Dips', ['Triceps','Chest']],
   // Back
-  ['Lat pull downs', 'Back'], ['Rows', 'Back'], ['Rows one hand', 'Back'], ['Cable pull overs', 'Back'],
-  ['Pull overs', 'Back'], ['Pull ups', 'Back'], ['Assisted pull ups', 'Back'], ['Back raises', 'Back'],
-  ['Back extensions', 'Back'], ['Deadlift', 'Back'], ['Dead hang', 'Back'], ['Face pull', 'Back'],
-  ['Shrugs', 'Back'], ['T-bar row', 'Back'],
+  ['Lat pull downs', ['Back','Biceps']], ['Rows', ['Back','Biceps']], ['Rows one hand', ['Back','Biceps']],
+  ['Bent-over rows', ['Back','Biceps']], ['Cable pull overs', ['Back']], ['Pull overs', ['Back','Chest']],
+  ['Pull ups', ['Back','Biceps']], ['Assisted pull ups', ['Back','Biceps']], ['Back raises', ['Back','Core']],
+  ['Deadlift', ['Back','Legs']], ['Dead hang', ['Back','Forearms']], ['Face pull', ['Shoulders','Back']],
+  ['Shrugs', ['Back','Shoulders']], ['T-bar row', ['Back','Biceps']],
   // Shoulders
-  ['Shoulder press', 'Shoulders'], ['Over head shoulder press', 'Shoulders'], ['Side raises', 'Shoulders'],
-  ['Front raises', 'Shoulders'], ['Rear delt flies', 'Shoulders'], ['Arnold press', 'Shoulders'],
-  // Biceps
-  ['Bicep (D) curls', 'Biceps'], ['Ez bar curls', 'Biceps'], ['Ez bar reverse', 'Biceps'],
-  ['Hammer curls', 'Biceps'], ['Preacher curls', 'Biceps'], ['Cable curls', 'Biceps'],
-  ['Straight bar curls', 'Biceps'], ['Wrist curls palm up', 'Biceps'], ['Wrist curls palm down', 'Biceps'],
-  ['Concentration curls', 'Biceps'],
+  ['Shoulder press', ['Shoulders','Triceps']], ['Lateral raises', ['Shoulders']], ['Front raises', ['Shoulders']],
+  ['Rear delt flies', ['Shoulders','Back']], ['Arnold press', ['Shoulders']], ['Upright rows', ['Shoulders','Back']],
+  // Biceps / forearms
+  ['Bicep (D) curls', ['Biceps']], ['EZ bar curls', ['Biceps']], ['EZ bar reverse curls', ['Biceps','Forearms']],
+  ['Hammer curls', ['Biceps','Forearms']], ['Preacher curls', ['Biceps']], ['Cable curls', ['Biceps']],
+  ['Straight bar curls', ['Biceps']], ['Concentration curls', ['Biceps']],
+  ['Wrist curls palm up', ['Forearms']], ['Wrist curls palm down', ['Forearms']],
   // Triceps
-  ['Tricep extensions', 'Triceps'], ['Tricep extensions one hand', 'Triceps'], ['Tricep extensions bar', 'Triceps'],
-  ['Tricep extensions reverse grip', 'Triceps'], ['Skull crushers', 'Triceps'], ['Tricep pushdown', 'Triceps'],
-  ['Overhead tricep extension', 'Triceps'],
+  ['Tricep extensions', ['Triceps']], ['Tricep extensions one hand', ['Triceps']], ['Tricep extensions bar', ['Triceps']],
+  ['Tricep extensions one hand reverse', ['Triceps']], ['Skull crushers', ['Triceps']], ['Tricep pushdown', ['Triceps']],
+  ['Overhead tricep extension', ['Triceps']],
   // Legs
-  ['Lunge', 'Legs'], ['Angled leg press', 'Legs'], ['Leg press', 'Legs'], ['Squat', 'Legs'],
-  ['Hip thrust', 'Legs'], ['Quad extensions', 'Legs'], ['Leg curls', 'Legs'], ['Hamstring curls', 'Legs'],
-  ['Calf raises', 'Legs'], ['Inner thigh', 'Legs'], ['Romanian deadlift', 'Legs'], ['Bulgarian split squat', 'Legs'],
-  // Core
-  ['Plank', 'Core'], ['Side plank', 'Core'], ['Sit-ups', 'Core'], ['Leg raises', 'Core'],
-  ['Reverse crunches', 'Core'], ['Mountain climbers', 'Core'], ['Russian twists', 'Core'], ['Crunches', 'Core'],
+  ['Lunges', ['Legs']], ['Angled leg press', ['Legs']], ['Leg press', ['Legs']], ['Squats', ['Legs']],
+  ['Hip thrusts', ['Legs']], ['Quad extensions', ['Legs']], ['Leg curls', ['Legs']], ['Hamstring curls', ['Legs']],
+  ['Calf raises', ['Legs']], ['Inner thighs open', ['Legs']], ['Inner thighs close', ['Legs']],
+  ['Romanian deadlift', ['Legs']], ['Bulgarian split squat', ['Legs']],
+  // Core / abs
+  ['Plank', ['Core','Abs']], ['Side plank', ['Core','Abs']], ['Sit-ups', ['Abs','Core']], ['Leg raises', ['Abs','Core']],
+  ['Reverse crunches', ['Abs','Core']], ['Crunches', ['Abs','Core']], ['Russian twists', ['Core','Abs']],
+  ['Mountain climbers', ['Cardio','Core']],
   // Cardio
-  ['jumping rope', 'Cardio'], ['Running', 'Cardio'], ['Cycling', 'Cardio'], ['Rowing machine', 'Cardio'],
+  ['Jumping rope', ['Cardio']], ['Running', ['Cardio']], ['Cycling', ['Cardio']], ['Rowing machine', ['Cardio']],
 ];
-
-const TYPE_SUGGESTIONS = [
-  'Back & Bicep', 'Chest & Tricep', 'Legs', 'Back & Bicep & Shoulder',
-  'Chest & Tricep & Shoulder', 'Shoulders', 'Abs & Core', 'Cardio', 'Full Body', 'Push', 'Pull',
-];
+const COMMON_TAGS = new Map(COMMON_EXERCISES.map(([n, t]) => [n.toLowerCase(), t]));
+// held for time rather than counted, unless your history says otherwise
+const TIMED_EXERCISES = new Set(['plank', 'side plank', 'dead hang']);
 
 /* ---------- State ---------- */
-let data = { version: 1, workouts: [] };
+let data = emptyData();
+function emptyData() { return { version: 2, workouts: [], weights: [], exerciseTags: {} }; }
 let calRef = new Date(); // calendar reference month
 
 /* ============================================================
@@ -110,11 +135,47 @@ function isiOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent); }
 function load() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) { data = JSON.parse(raw); if (!data.workouts) data.workouts = []; }
-  } catch (e) { console.warn('load failed', e); data = { version: 1, workouts: [] }; }
-  if (!Array.isArray(data.weights)) data.weights = [];
+    if (raw) data = JSON.parse(raw);
+  } catch (e) { console.warn('load failed', e); data = emptyData(); }
+  const old = data.version !== 2;
+  migrate();
+  if (old) save();
 }
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+/* v1 stored one combined `type` string per workout; v2 stores a `tags` array
+   plus `exerciseTags` (lower-cased exercise name -> tags). */
+function migrate() {
+  if (!Array.isArray(data.workouts)) data.workouts = [];
+  if (!Array.isArray(data.weights)) data.weights = [];
+  if (!data.exerciseTags || typeof data.exerciseTags !== 'object') data.exerciseTags = {};
+  data.workouts.forEach(migrateWorkout);
+  data.version = 2;
+}
+function migrateWorkout(w) {
+  if (!Array.isArray(w.tags)) w.tags = parseTypeTags(w.type);
+  delete w.type;
+  if (!Array.isArray(w.exercises)) w.exercises = [];
+  return w;
+}
+
+/* ---------- Tag lookups ---------- */
+function workoutTitle(w) { return w.tags && w.tags.length ? w.tags.join(' · ') : 'Workout'; }
+function exerciseTags(name) {
+  const k = name.trim().toLowerCase();
+  return data.exerciseTags[k] || COMMON_TAGS.get(k) || [];
+}
+function setExerciseTags(name, tags) {
+  data.exerciseTags[name.trim().toLowerCase()] = uniqTags(tags.map(normTag));
+  save();
+}
+function allTags() {
+  const tags = [...DEFAULT_TAGS];
+  data.workouts.forEach(w => tags.push(...w.tags));
+  Object.values(data.exerciseTags).forEach(ts => tags.push(...ts));
+  return uniqTags(tags);
+}
+function tagPillsHTML(tags) { return tags.map(t => `<span class="tag-pill">${escapeHtml(t)}</span>`).join(''); }
 
 /* ---------- Utils ---------- */
 const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
@@ -137,16 +198,22 @@ function isoWeekKey(d) {
 function weekStart(d){ const x=new Date(d); const day=(x.getDay()+6)%7; x.setDate(x.getDate()-day); x.setHours(0,0,0,0); return x; }
 
 /* ---------- Parsing inputs ---------- */
-function parseReps(str) {
-  if (!str) return null;
-  const s = str.trim().toLowerCase().replace(/\s+/g, ' ');
-  let m = s.match(/^(\d+)\s*[x×]\s*(\d+)/);
-  if (m) return { sets: +m[1], reps: +m[2] };
-  m = s.match(/^(\d+)\s*(?:sec|s|reps?)?$/);
-  if (m) return { sets: 1, reps: +m[1] };
-  m = s.match(/(\d+)/);
-  if (m) return { sets: 1, reps: +m[1] };
-  return null;
+/* Reps box: "12", "30s", "30 sec", "45 seconds", "1 min", or a whole "3 x 12" / "3x30s".
+   Returns { reps, sets?, unit? } — sets/unit only when the text spells them out. */
+function parseRepsField(str) {
+  const s = String(str || '').trim().toLowerCase();
+  if (!s) return null;
+  const m = s.match(/^(?:(\d+)\s*[x×*]\s*)?(\d+(?:[.,]\d+)?)\s*(s|secs?|seconds?|m|mins?|minutes?|reps?)?$/);
+  if (!m) return null;
+  let reps = parseFloat(m[2].replace(',', '.'));
+  const out = {};
+  if (m[3]) {
+    if (m[3][0] === 'm') { out.unit = 'sec'; reps *= 60; }
+    else out.unit = m[3][0] === 's' ? 'sec' : 'reps';
+  }
+  out.reps = Math.round(reps);
+  if (m[1]) out.sets = +m[1];
+  return out;
 }
 function parseWeight(str) {
   if (str == null) return null;
@@ -173,8 +240,9 @@ function parseWeight(str) {
 }
 function fmtSet(s) {
   let r = '';
-  if (s.sets != null && s.reps != null) r = `${s.sets} × ${s.reps}`;
-  else if (s.reps != null) r = `${s.reps}`;
+  const u = s.unit === 'sec' ? 's' : '';
+  if (s.sets != null && s.reps != null) r = `${s.sets} × ${s.reps}${u}`;
+  else if (s.reps != null) r = `${s.reps}${u}`;
   const w = s.weight && s.weight.raw ? ` (${s.weight.raw})` : '';
   return r + w;
 }
@@ -187,20 +255,31 @@ function exerciseSummary(w) {
 
 /* ---------- Exercise library (mine + common) ---------- */
 function exerciseLibrary() {
-  const map = new Map(); // key -> {name, cat, isMine}
-  COMMON_EXERCISES.forEach(([name, cat]) => map.set(name.toLowerCase(), { name, cat, isMine: false }));
+  const map = new Map(); // key -> {name, tags, isMine}
+  COMMON_EXERCISES.forEach(([name]) => map.set(name.toLowerCase(), { name, isMine: false }));
   // overlay mine (counts + preferred casing)
   const counts = new Map();
   data.workouts.forEach(w => w.exercises.forEach(e => {
     const k = e.name.trim().toLowerCase();
     counts.set(k, (counts.get(k) || 0) + 1);
-    if (!map.has(k)) map.set(k, { name: e.name, cat: '', isMine: true });
+    if (!map.has(k)) map.set(k, { name: e.name, isMine: true });
     else map.get(k).isMine = true;
   }));
   const arr = [...map.values()];
-  arr.forEach(x => x._count = counts.get(x.name.toLowerCase()) || 0);
+  arr.forEach(x => { x._count = counts.get(x.name.toLowerCase()) || 0; x.tags = exerciseTags(x.name); });
   arr.sort((a, b) => (b._count - a._count) || a.name.localeCompare(b.name));
   return arr;
+}
+// Most recent unit used for this exercise ('sec' or 'reps'), so a plank starts in seconds.
+function defaultUnitFor(name) {
+  const k = name.trim().toLowerCase();
+  let last = null, lastDate = '';
+  data.workouts.forEach(w => {
+    if (w.date < lastDate) return;
+    w.exercises.forEach(e => { if (e.name.trim().toLowerCase() === k && e.sets.length) { last = e.sets[e.sets.length - 1]; lastDate = w.date; } });
+  });
+  if (last && last.reps != null) return last.unit === 'sec' ? 'sec' : 'reps';
+  return TIMED_EXERCISES.has(k) ? 'sec' : 'reps';
 }
 
 /* ============================================================
@@ -244,7 +323,7 @@ function workoutsIn(mode) {
 }
 // Reps for one set entry: "3 x 12" -> 36; "12" -> 12; lone weight (no reps) -> 0
 function repsOfSet(s) {
-  if (s.reps == null) return 0;
+  if (s.reps == null || s.unit === 'sec') return 0;
   const n = (s.sets != null) ? s.sets : 1;
   return n * s.reps;
 }
@@ -265,12 +344,16 @@ function statRecords(ws) {
   let bigSession = null;
   ws.forEach(w => {
     let reps = 0; w.exercises.forEach(e => e.sets.forEach(s => reps += repsOfSet(s)));
-    if (reps > 0 && (!bigSession || reps > bigSession.reps)) bigSession = { date: w.date, type: w.type, reps };
+    if (reps > 0 && (!bigSession || reps > bigSession.reps)) bigSession = { date: w.date, title: workoutTitle(w), reps };
   });
   let bigSet = null;
   ws.forEach(w => w.exercises.forEach(e => e.sets.forEach(s => {
     const r = repsOfSet(s);
     if (r > 0 && (!bigSet || r > bigSet.reps)) bigSet = { reps: r, name: e.name, date: w.date };
+  })));
+  let longHold = null;
+  ws.forEach(w => w.exercises.forEach(e => e.sets.forEach(s => {
+    if (s.unit === 'sec' && s.reps > 0 && (!longHold || s.reps > longHold.secs)) longHold = { secs: s.reps, name: e.name, date: w.date };
   })));
   // longest streak of consecutive calendar days (all-time)
   const days = [...new Set(data.workouts.map(w => w.date))].sort();
@@ -280,7 +363,7 @@ function statRecords(ws) {
     if (gap === 86400000) { streak++; if (streak > best) best = streak; }
     else streak = 1;
   }
-  return { bigSession, bigSet, streak: best };
+  return { bigSession, bigSet, longHold, streak: best };
 }
 function fmtNum(n){ return Math.round(n).toLocaleString('en-US'); }
 
@@ -371,8 +454,9 @@ function leaderboardHTML(rows, kind, valFn) {
 }
 function recordsHTML(rec) {
   const rows = [];
-  if (rec.bigSession) rows.push(['Biggest session', `${fmtNum(rec.bigSession.reps)} reps`, `${escapeHtml(rec.bigSession.type||'Workout')} · ${fmtDateLong(rec.bigSession.date)}`]);
+  if (rec.bigSession) rows.push(['Biggest session', `${fmtNum(rec.bigSession.reps)} reps`, `${escapeHtml(rec.bigSession.title)} · ${fmtDateLong(rec.bigSession.date)}`]);
   if (rec.bigSet) rows.push(['Most reps in a set', `${rec.bigSet.reps} reps`, `${escapeHtml(rec.bigSet.name)} · ${fmtDateLong(rec.bigSet.date)}`]);
+  if (rec.longHold) rows.push(['Longest hold', `${rec.longHold.secs}s`, `${escapeHtml(rec.longHold.name)} · ${fmtDateLong(rec.longHold.date)}`]);
   if (!rows.length) return '<div class="muted">No data in this period.</div>';
   return rows.map(([t,v,s]) => `<div class="rec-row"><div class="rec-ico">★</div><div class="rec-main"><div class="rec-t">${t}</div><div class="rec-s">${s}</div></div><div class="rec-v">${v}</div></div>`).join('');
 }
@@ -408,10 +492,7 @@ function freqChartSVG(){ return barChartSVG(freqBuckets(), { unit: '' }); }
 function muscleBreakdownHTML(ws) {
   ws = ws || data.workouts;
   const counts = new Map();
-  ws.forEach(w => {
-    const tokens = (w.type||'').split(/[&,]/).map(t => normMuscle(t)).filter(Boolean);
-    new Set(tokens).forEach(t => counts.set(t, (counts.get(t)||0)+1));
-  });
+  ws.forEach(w => w.tags.forEach(t => counts.set(t, (counts.get(t)||0)+1)));
   const arr = [...counts.entries()].sort((a,b)=>b[1]-a[1]);
   if (!arr.length) return '<div class="muted">No type data.</div>';
   const max = arr[0][1];
@@ -422,16 +503,6 @@ function muscleBreakdownHTML(ws) {
       <div class="bd-count">${c}</div>
     </div>`).join('');
 }
-function normMuscle(t) {
-  let s = t.trim().toLowerCase();
-  if (!s) return '';
-  const map = { bicep:'Biceps', biceps:'Biceps', tricep:'Triceps', triceps:'Triceps', chest:'Chest',
-    back:'Back', shoulder:'Shoulders', shoulders:'Shoulders', leg:'Legs', legs:'Legs',
-    cardio:'Cardio', abs:'Core', core:'Core', corr:'Core' };
-  for (const k in map) if (s === k || s.startsWith(k)) return map[k];
-  return t.trim().replace(/\b\w/g, c => c.toUpperCase());
-}
-
 /* ============================================================
    CHARTS (self-contained SVG)
    ============================================================ */
@@ -503,7 +574,7 @@ function renderCalendar() {
   const todayS = todayStr();
 
   let cells = '';
-  for (let i=0;i<startDow;i++) cells += `<div class="cal-cell empty"></div>`;
+  for (let i=0;i<startDow;i++) cells += `<div class="cal-cell blank"></div>`;
   for (let d=1; d<=daysInMonth; d++) {
     const ds = `${y}-${pad(m+1)}-${pad(d)}`;
     const has = byDate.has(ds);
@@ -545,7 +616,7 @@ function workoutRow(w) {
   const d = dateObj(w.date);
   return `<div class="list-row" data-date="${w.date}">
     <div class="lr-date"><div class="d">${d.getDate()}</div><div class="m">${MONTHS[d.getMonth()]}</div></div>
-    <div class="lr-main"><div class="lr-title">${escapeHtml(w.type||'Workout')}</div><div class="lr-sub">${escapeHtml(exerciseSummary(w))}</div></div>
+    <div class="lr-main"><div class="lr-title">${escapeHtml(workoutTitle(w))}</div><div class="lr-sub">${escapeHtml(exerciseSummary(w))}</div></div>
     <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
   </div>`;
 }
@@ -558,7 +629,7 @@ function openWorkoutDetail(date) {
   if (!ws.length) return;
   const body = ws.map(w => `
     <div class="card">
-      <div class="wd-type">${escapeHtml(w.type||'Workout')}</div>
+      <div class="tag-pills">${w.tags.length ? tagPillsHTML(w.tags) : '<span class="wd-type">Workout</span>'}</div>
       <div style="margin-top:10px">
         ${w.exercises.map(e => `
           <div class="wd-ex">
@@ -579,7 +650,7 @@ function openWorkoutDetail(date) {
 
 function confirmDelete(id) {
   const w = data.workouts.find(x => x.id === id);
-  showDialog('Delete workout?', `${fmtDateLong(w.date)} — ${w.type||'Workout'}`, [
+  showDialog('Delete workout?', `${fmtDateLong(w.date)} — ${workoutTitle(w)}`, [
     { label: 'Cancel', class: 'btn-secondary', onClick: closeModal },
     { label: 'Delete', class: 'btn-danger', onClick: () => {
       data.workouts = data.workouts.filter(x => x.id !== id); save(); closeModal();
@@ -615,10 +686,16 @@ function openEditForm(id) {
 function buildWorkoutForm(existing, opts) {
   const wrap = document.createElement('div');
   const state = existing
-    ? { date: existing.date, type: existing.type, exercises: existing.exercises.map(e => ({ name: e.name, sets: e.sets.map(s => ({ reps: s.sets!=null? `${s.sets} x ${s.reps}` : (s.reps!=null?`${s.reps}`:''), wt: s.weight? s.weight.raw : '' })) })) }
-    : { date: todayStr(), type: '', exercises: [ blankExercise() ] };
+    ? { date: existing.date, tags: existing.tags.slice(), exercises: existing.exercises.map(e => ({ name: e.name, sets: e.sets.map(s => ({
+        sets: s.sets != null && s.reps != null ? String(s.sets) : '',
+        reps: s.reps != null ? String(s.reps) : '',
+        unit: s.unit === 'sec' ? 'sec' : 'reps',
+        wt: s.weight ? s.weight.raw : '',
+      })) })) }
+    : { date: todayStr(), tags: [], exercises: [ blankExercise() ] };
 
-  function blankExercise(){ return { name: '', sets: [ { reps: '', wt: '' } ] }; }
+  function blankSet(unit) { return { sets: '', reps: '', unit: unit || 'reps', wt: '' }; }
+  function blankExercise() { return { name: '', sets: [ blankSet() ] }; }
 
   function render() {
     wrap.innerHTML = `
@@ -626,12 +703,8 @@ function buildWorkoutForm(existing, opts) {
       <input class="input" type="date" id="f-date" value="${state.date}" />
 
       <label class="field-label">Workout type</label>
-      <div style="position:relative">
-        <input class="input" id="f-type" placeholder="e.g. Back & Bicep" value="${escapeHtml(state.type)}" autocomplete="off" />
-      </div>
-      <div class="chips" id="type-chips">
-        ${TYPE_SUGGESTIONS.slice(0,6).map(t=>`<button type="button" class="chip" data-t="${escapeHtml(t)}">${escapeHtml(t)}</button>`).join('')}
-      </div>
+      <div id="f-tags"></div>
+      <div class="hint">Pick one or more. Exercises for the first tag you pick are suggested first.</div>
 
       <label class="field-label">Exercises</label>
       <div id="ex-blocks"></div>
@@ -645,13 +718,7 @@ function buildWorkoutForm(existing, opts) {
     state.exercises.forEach((ex, ei) => blocks.appendChild(exerciseBlock(ex, ei)));
 
     wrap.querySelector('#f-date').onchange = e => state.date = e.target.value;
-    const typeInput = wrap.querySelector('#f-type');
-    typeInput.oninput = e => state.type = e.target.value;
-    attachAutocomplete(typeInput, () => typeItems(), v => { state.type = v; typeInput.value = v; });
-    wrap.querySelector('#type-chips').onclick = e => {
-      const b = e.target.closest('.chip'); if (!b) return;
-      state.type = b.dataset.t; typeInput.value = b.dataset.t;
-    };
+    tagPicker(wrap.querySelector('#f-tags'), state.tags);
     wrap.querySelector('#add-ex').onclick = () => { state.exercises.push(blankExercise()); render(); focusLastExercise(); };
     wrap.querySelector('#save-btn').onclick = doSave;
     if (opts.onCancelLabel) wrap.querySelector('#cancel-btn').onclick = opts.onCancel;
@@ -667,32 +734,112 @@ function buildWorkoutForm(existing, opts) {
         </div>
         ${state.exercises.length>1?`<button type="button" class="ex-rm" title="Remove">×</button>`:''}
       </div>
+      <div class="ex-tags"></div>
+      <div class="set-head"><span>Sets</span><span></span><span>Reps / time</span><span>Weight</span></div>
       <div class="sets"></div>
       <button type="button" class="mini-btn add-set">+ Add set</button>
     `;
     const nameInput = block.querySelector('.ex-name');
+    const tagLine = block.querySelector('.ex-tags');
+    function drawTagLine() {
+      const name = ex.name.trim();
+      if (!name) { tagLine.innerHTML = ''; return; }
+      const tags = exerciseTags(name);
+      tagLine.innerHTML = tags.length
+        ? tagPillsHTML(tags) + '<span class="tag-edit">Edit</span>'
+        : '<span class="tag-missing">+ Add workout type</span>';
+    }
+    function askTags() { const name = ex.name.trim(); if (name) promptExerciseTags(name, state.tags, drawTagLine); }
+    tagLine.onclick = askTags;
     nameInput.oninput = e => ex.name = e.target.value;
-    attachAutocomplete(nameInput, () => exItems(), v => { ex.name = v; nameInput.value = v; });
+    nameInput.addEventListener('blur', () => setTimeout(drawTagLine, 200));
+    attachAutocomplete(nameInput, () => exItems(state.tags), v => {
+      ex.name = v; nameInput.value = v;
+      if (ex.sets.every(s => !s.reps)) { const u = defaultUnitFor(v); ex.sets.forEach(s => s.unit = u); renderSets(); }
+      drawTagLine();
+      if (!exerciseTags(v).length) askTags();
+    });
+    drawTagLine();
+
     const setsEl = block.querySelector('.sets');
     function renderSets() {
       setsEl.innerHTML = '';
-      ex.sets.forEach((s, si) => {
-        const row = document.createElement('div');
-        row.className = 'set-line';
-        row.innerHTML = `
-          <input class="input reps" placeholder="3 x 12" value="${escapeHtml(s.reps)}" autocomplete="off" inputmode="text" />
-          <input class="input wt" placeholder="52kg / 4 plates" value="${escapeHtml(s.wt)}" autocomplete="off" />
-          ${ex.sets.length>1?`<button type="button" class="rm" title="Remove set">×</button>`:'<span style="width:28px"></span>'}
-        `;
-        row.querySelector('.reps').oninput = e => s.reps = e.target.value;
-        row.querySelector('.wt').oninput = e => s.wt = e.target.value;
-        const rm = row.querySelector('.rm');
-        if (rm) rm.onclick = () => { ex.sets.splice(si,1); renderSets(); };
-        setsEl.appendChild(row);
-      });
+      ex.sets.forEach((s, si) => setsEl.appendChild(setRow(s, si)));
+    }
+    function setRow(s, si) {
+      const row = document.createElement('div');
+      row.className = 'set-item';
+      row.innerHTML = `
+        <div class="set-line">
+          <button type="button" class="sets-btn" aria-label="Number of sets"></button>
+          <span class="times">×</span>
+          <div class="reps-wrap">
+            <input class="input reps" value="${escapeHtml(s.reps)}" autocomplete="off" aria-label="Reps or seconds" />
+            <button type="button" class="unit-btn" aria-label="Switch between reps and seconds"></button>
+          </div>
+          <input class="input wt" placeholder="Weight" value="${escapeHtml(s.wt)}" autocomplete="off" />
+          ${ex.sets.length>1?`<button type="button" class="rm" title="Remove set">×</button>`:'<span></span>'}
+        </div>
+        <div class="sets-slider" hidden>
+          <input type="range" min="1" max="${SET_SLIDER_MAX}" step="1" value="${Math.min(+s.sets || 3, SET_SLIDER_MAX)}" aria-label="Number of sets" />
+          <div class="ticks">${Array.from({ length: SET_SLIDER_MAX }, (_, i) => `<button type="button" data-n="${i+1}">${i+1}</button>`).join('')}</div>
+        </div>`;
+      const setsBtn = row.querySelector('.sets-btn');
+      const slider = row.querySelector('.sets-slider');
+      const range = slider.querySelector('input');
+      const repsIn = row.querySelector('.reps');
+      const unitBtn = row.querySelector('.unit-btn');
+
+      function drawSets() {
+        setsBtn.textContent = s.sets || 'Sets';
+        setsBtn.classList.toggle('is-empty', !s.sets);
+        slider.querySelectorAll('.ticks button').forEach(b => b.classList.toggle('active', b.dataset.n === s.sets));
+      }
+      function drawUnit() {
+        const sec = s.unit === 'sec';
+        unitBtn.textContent = sec ? 'sec' : 'reps';
+        unitBtn.classList.toggle('sec', sec);
+        repsIn.placeholder = sec ? '30' : '12';
+      }
+      function setCount(n) { s.sets = String(n); range.value = n; drawSets(); }
+
+      setsBtn.onclick = () => {
+        const opening = slider.hidden;
+        wrap.querySelectorAll('.sets-slider').forEach(x => x.hidden = true);
+        wrap.querySelectorAll('.sets-btn').forEach(x => x.classList.remove('open'));
+        slider.hidden = !opening;
+        setsBtn.classList.toggle('open', opening);
+        if (opening && !s.sets) setCount(range.value);
+      };
+      range.oninput = () => setCount(range.value);
+      slider.querySelector('.ticks').onclick = e => { const b = e.target.closest('button'); if (b) setCount(b.dataset.n); };
+
+      // "30s" / "30 sec" / "1 min" switch the set to seconds as you type
+      repsIn.oninput = () => {
+        s.reps = repsIn.value;
+        const p = parseRepsField(repsIn.value);
+        if (p && p.unit && p.unit !== s.unit) { s.unit = p.unit; drawUnit(); }
+      };
+      // tidy up on blur: "3x12" fills the sets box too, "30 sec" becomes 30 + sec badge
+      repsIn.onblur = () => {
+        const p = parseRepsField(repsIn.value);
+        if (!p) return;
+        if (p.sets) setCount(p.sets);
+        s.reps = repsIn.value = String(p.reps);
+      };
+      unitBtn.onclick = () => { s.unit = s.unit === 'sec' ? 'reps' : 'sec'; drawUnit(); };
+      row.querySelector('.wt').oninput = e => s.wt = e.target.value;
+      const rm = row.querySelector('.rm');
+      if (rm) rm.onclick = () => { ex.sets.splice(si,1); renderSets(); };
+      drawSets(); drawUnit();
+      return row;
     }
     renderSets();
-    block.querySelector('.add-set').onclick = () => { ex.sets.push({ reps:'', wt:'' }); renderSets(); };
+    block.querySelector('.add-set').onclick = () => {
+      const prev = ex.sets[ex.sets.length - 1];
+      ex.sets.push(blankSet(prev ? prev.unit : defaultUnitFor(ex.name)));
+      renderSets();
+    };
     const rmEx = block.querySelector('.ex-rm');
     if (rmEx) rmEx.onclick = () => { state.exercises.splice(ei,1); render(); };
     return block;
@@ -707,30 +854,111 @@ function buildWorkoutForm(existing, opts) {
       const name = ex.name.trim(); if (!name) return;
       const sets = [];
       ex.sets.forEach(s => {
-        const rp = parseReps(s.reps);
+        const p = parseRepsField(s.reps);
         const wt = parseWeight(s.wt);
-        if (!rp && !wt) return;
-        sets.push({ sets: rp ? rp.sets : null, reps: rp ? rp.reps : null, weight: wt });
+        if (!p && !wt) return;
+        const n = parseInt(p && p.sets ? p.sets : s.sets, 10);
+        const set = { sets: p ? (n > 0 ? n : 1) : null, reps: p ? p.reps : null, weight: wt };
+        if (p && (p.unit || s.unit) === 'sec') set.unit = 'sec';
+        sets.push(set);
       });
       if (!sets.length) sets.push({ sets:null, reps:null, weight:null });
       exercises.push({ name, sets });
     });
     if (!exercises.length) { toast('Add at least one exercise'); return; }
-    const w = { id: existing? existing.id : uid(), date: state.date, type: state.type.trim(), exercises };
-    opts.onSave(w);
+    const w = { id: existing? existing.id : uid(), date: state.date, tags: uniqTags(state.tags), exercises };
+    // every exercise must belong to at least one workout type
+    const untagged = uniqTags(exercises.map(e => e.name)).filter(n => !exerciseTags(n).length);
+    (function next(i) {
+      if (i >= untagged.length) { opts.onSave(w); return; }
+      promptExerciseTags(untagged[i], state.tags, () => next(i + 1), () => toast('Each exercise needs a workout type'));
+    })(0);
   }
 
   render();
   return wrap;
 }
+const SET_SLIDER_MAX = 8;
 
-function typeItems() {
-  const set = new Map();
-  TYPE_SUGGESTIONS.forEach(t => set.set(t.toLowerCase(), { name: t, cat: '', isMine: false }));
-  data.workouts.forEach(w => { if (w.type) set.set(w.type.toLowerCase(), { name: w.type, cat:'', isMine:true }); });
-  return [...set.values()];
+/* Toggleable tag chips plus "+ New tag". `selected` is mutated in tap order,
+   which is also the order exercise suggestions are grouped in. */
+function tagPicker(host, selected, opts = {}) {
+  let adding = false;
+  function draw() {
+    const tags = uniqTags([...(opts.lead || []), ...allTags(), ...selected]);
+    host.className = 'chips tag-picker';
+    host.innerHTML = tags.map(t => `<button type="button" class="chip ${hasTag(selected, t)?'active':''}" data-t="${escapeHtml(t)}">${escapeHtml(t)}</button>`).join('')
+      + (adding ? `<input class="chip-input" placeholder="New tag" maxlength="24" autocomplete="off" />`
+                : `<button type="button" class="chip chip-new">+ New tag</button>`);
+    host.querySelectorAll('.chip[data-t]').forEach(b => b.onclick = () => {
+      const i = selected.findIndex(x => x.toLowerCase() === b.dataset.t.toLowerCase());
+      if (i >= 0) selected.splice(i, 1); else selected.push(b.dataset.t);
+      changed();
+    });
+    const nb = host.querySelector('.chip-new');
+    if (nb) nb.onclick = () => { adding = true; draw(); host.querySelector('.chip-input').focus(); };
+    const input = host.querySelector('.chip-input');
+    if (input) {
+      let done = false;
+      const commit = (keep) => {
+        if (done) return; done = true; adding = false;
+        const t = normTag(input.value);
+        if (keep && t && !hasTag(selected, t)) selected.push(t);
+        changed();
+      };
+      input.onkeydown = e => {
+        if (e.key === 'Enter') { e.preventDefault(); commit(true); }
+        if (e.key === 'Escape') commit(false);
+      };
+      input.onblur = () => commit(true);
+    }
+  }
+  function changed() { draw(); if (opts.onChange) opts.onChange(selected); }
+  draw();
 }
-function exItems() { return exerciseLibrary().map(x => ({ name: x.name, cat: x.cat, isMine: x.isMine })); }
+
+/* Ask which workout types an exercise belongs to. Layers above any open sheet. */
+function promptExerciseTags(name, lead, onDone, onCancel) {
+  const selected = exerciseTags(name).slice();
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay center';
+  overlay.style.zIndex = '120';
+  overlay.innerHTML = `<div class="dialog" style="text-align:left">
+    <h3 style="text-align:center">${escapeHtml(name)}</h3>
+    <p style="text-align:center">Which workout types does this exercise belong to?</p>
+    <div class="et-picker"></div>
+    <div class="btn-row" style="margin-top:18px">
+      <button class="btn btn-secondary btn-sm" style="flex:1" data-a="cancel">Cancel</button>
+      <button class="btn btn-primary btn-sm" style="flex:1" data-a="ok">Save</button>
+    </div>
+  </div>`;
+  document.getElementById('modal-root').appendChild(overlay);
+  const ok = overlay.querySelector('[data-a="ok"]');
+  const sync = () => { ok.disabled = !selected.length; };
+  tagPicker(overlay.querySelector('.et-picker'), selected, { lead, onChange: sync });
+  sync();
+  const cancel = () => { overlay.remove(); if (onCancel) onCancel(); };
+  overlay.addEventListener('click', e => { if (e.target === overlay) cancel(); });
+  overlay.querySelector('[data-a="cancel"]').onclick = cancel;
+  ok.onclick = () => {
+    if (!selected.length) return;
+    setExerciseTags(name, selected);
+    overlay.remove();
+    onDone(exerciseTags(name));
+  };
+}
+
+/* Exercise suggestions, grouped by the workout's tags in the order they were picked. */
+function exItems(order) {
+  const lib = exerciseLibrary();
+  if (!order.length) return lib;
+  const buckets = order.map(() => []), rest = [];
+  lib.forEach(x => {
+    const i = order.findIndex(t => hasTag(x.tags, t));
+    if (i >= 0) buckets[i].push({ ...x, group: order[i] }); else rest.push({ ...x, group: 'Other' });
+  });
+  return buckets.flat().concat(rest);
+}
 
 /* ---------- Autocomplete ---------- */
 function attachAutocomplete(input, getItems, onPick) {
@@ -738,19 +966,24 @@ function attachAutocomplete(input, getItems, onPick) {
   function close() { if (listEl) { listEl.remove(); listEl = null; } document.removeEventListener('click', outside, true); }
   function outside(e){ if (listEl && !listEl.contains(e.target) && e.target !== input) close(); }
   function open() {
-    const q = input.value.trim().toLowerCase();
+    const raw = input.value.trim(), q = raw.toLowerCase();
     const items = getItems();
-    let matches = q ? items.filter(it => it.name.toLowerCase().includes(q)) : items;
-    matches = matches.slice(0, 8);
+    const matches = (q ? items.filter(it => it.name.toLowerCase().includes(q)) : items).slice(0, q ? 15 : 40);
     const exact = items.some(it => it.name.toLowerCase() === q);
     if (!listEl) {
       listEl = document.createElement('div'); listEl.className = 'ac-list';
+      listEl.addEventListener('mousedown', e => e.preventDefault()); // keep focus in the input
       input.parentElement.style.position = 'relative';
       input.parentElement.appendChild(listEl);
       document.addEventListener('click', outside, true);
     }
-    let html = matches.map(it => `<div class="ac-item" data-v="${escapeHtml(it.name)}">${escapeHtml(it.name)}${it.cat?`<span class="cat">${escapeHtml(it.cat)}</span>`:''}${it.isMine&&!it.cat?'<span class="cat">yours</span>':''}</div>`).join('');
-    if (q && !exact) html += `<div class="ac-item" data-v="${escapeHtml(input.value.trim())}" data-new="1">Create "${escapeHtml(input.value.trim())}"<span class="new-tag">NEW</span></div>`;
+    let html = '', group = null;
+    matches.forEach(it => {
+      if (it.group && it.group !== group) { group = it.group; html += `<div class="ac-group">${escapeHtml(group)}</div>`; }
+      const meta = it.tags && it.tags.length ? it.tags.join(' · ') : (it.isMine ? 'no type yet' : '');
+      html += `<div class="ac-item" data-v="${escapeHtml(it.name)}">${escapeHtml(it.name)}${meta?`<span class="cat">${escapeHtml(meta)}</span>`:''}</div>`;
+    });
+    if (q && !exact) html += `<div class="ac-item" data-v="${escapeHtml(raw)}" data-new="1">Create "${escapeHtml(raw)}"<span class="new-tag">NEW</span></div>`;
     if (!html) { close(); return; }
     listEl.innerHTML = html;
     listEl.querySelectorAll('.ac-item').forEach(it => it.onclick = (ev) => {
@@ -882,7 +1115,7 @@ function openSettings() {
     </div>
     <div class="card">
       <h2>Library</h2>
-      <div class="muted" style="margin-bottom:14px">Rename or remove exercises and workout types across your whole history.</div>
+      <div class="muted" style="margin-bottom:14px">Rename, re-tag or remove exercises and workout types across your whole history.</div>
       <button class="btn btn-secondary" id="manage-ex">Exercises</button>
       <button class="btn btn-secondary" id="manage-types" style="margin-top:10px">Workout types</button>
     </div>
@@ -925,7 +1158,7 @@ function openSettings() {
   sheet.querySelectorAll('[data-legal]').forEach(r => r.onclick = () => openLegal(r.dataset.legal));
   sheet.querySelector('#reset-btn').onclick = () => showDialog('Erase all data?', 'This cannot be undone. Export a backup first if unsure.', [
     { label:'Cancel', class:'btn-secondary', onClick: closeModal },
-    { label:'Erase', class:'btn-danger', onClick: () => { data = { version:1, workouts:[] }; save(); closeModal(); toast('All data erased'); switchTab('stats'); } },
+    { label:'Erase', class:'btn-danger', onClick: () => { data = emptyData(); save(); closeModal(); toast('All data erased'); switchTab('stats'); } },
   ]);
 }
 
@@ -940,15 +1173,16 @@ function exportData() {
 
 function mergeWorkouts(incoming) {
   let added = 0;
-  const seen = new Set(data.workouts.map(w => w.date + '|' + (w.type||'')));
-  incoming.forEach(w => {
-    const key = w.date + '|' + (w.type||'');
-    if (seen.has(key)) return;
-    seen.add(key);
-    data.workouts.push({ id: w.id || uid(), date: w.date, type: w.type||'', exercises: (w.exercises||[]).map(e => ({ name: e.name, sets: e.sets||[] })) });
+  const key = w => w.date + '|' + workoutTitle(w).toLowerCase();
+  const seen = new Set(data.workouts.map(key));
+  incoming.forEach(raw => {
+    const w = migrateWorkout({ id: raw.id || uid(), date: raw.date, type: raw.type, tags: raw.tags,
+      exercises: (raw.exercises||[]).map(e => ({ name: e.name, sets: e.sets||[] })) });
+    if (seen.has(key(w))) return;
+    seen.add(key(w));
+    data.workouts.push(w);
     added++;
   });
-  save();
   return added;
 }
 
@@ -956,21 +1190,40 @@ function importFile(file) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = () => {
+    let obj, ws;
     try {
-      const obj = JSON.parse(reader.result);
-      const ws = Array.isArray(obj) ? obj : obj.workouts;
+      obj = JSON.parse(reader.result);
+      ws = Array.isArray(obj) ? obj : obj.workouts;
       if (!Array.isArray(ws)) throw new Error('no workouts array');
-      const n = mergeWorkouts(ws);
-      let wn = 0;
-      if (obj && Array.isArray(obj.weights)) {
-        const seen = new Set(data.weights.map(x => x.date));
-        obj.weights.forEach(x => { if (x && x.date && !seen.has(x.date) && isFinite(x.value)) { data.weights.push({ date: x.date, value: x.value }); seen.add(x.date); wn++; } });
-        if (wn) { data.weights.sort((a,b)=>a.date.localeCompare(b.date)); save(); }
-      }
-      closeModal(); toast(`Imported ${n} workout${n===1?'':'s'}${wn?` · ${wn} weigh-ins`:''}`); switchTab('stats');
-    } catch (e) { toast('Could not read that file'); }
+    } catch (e) { toast('Could not read that file'); return; }
+    if (!data.workouts.length) { applyImport(obj, ws, false); return; }
+    showDialog('Import backup', `The file has ${ws.length} workouts. Add them to the ${data.workouts.length} on this device, or replace everything on this device with the file?`, [
+      { label: 'Cancel', class: 'btn-secondary', onClick: closeModal },
+      { label: 'Merge', class: 'btn-secondary', onClick: () => applyImport(obj, ws, false) },
+      { label: 'Replace', class: 'btn-danger', onClick: () => applyImport(obj, ws, true) },
+    ]);
   };
   reader.readAsText(file);
+}
+
+function applyImport(obj, ws, replace) {
+  if (replace) data = emptyData();
+  const n = mergeWorkouts(ws);
+  let wn = 0;
+  if (obj && Array.isArray(obj.weights)) {
+    const seen = new Set(data.weights.map(x => x.date));
+    obj.weights.forEach(x => { if (x && x.date && !seen.has(x.date) && isFinite(x.value)) { data.weights.push({ date: x.date, value: x.value }); seen.add(x.date); wn++; } });
+    data.weights.sort((a,b)=>a.date.localeCompare(b.date));
+  }
+  // exercise tags from the file fill in anything not tagged on this device
+  if (obj && obj.exerciseTags && typeof obj.exerciseTags === 'object') {
+    Object.entries(obj.exerciseTags).forEach(([k, ts]) => {
+      const key = k.trim().toLowerCase();
+      if (Array.isArray(ts) && ts.length && !data.exerciseTags[key]) data.exerciseTags[key] = uniqTags(ts.map(normTag));
+    });
+  }
+  save();
+  closeModal(); toast(`${replace ? 'Replaced with' : 'Imported'} ${n} workout${n===1?'':'s'}${wn?` · ${wn} weigh-ins`:''}`); switchTab('stats');
 }
 
 /* ============================================================
@@ -990,32 +1243,35 @@ function openLegal(key) {
    LIBRARY MANAGER — rename / delete exercises and workout types
    ============================================================ */
 function libraryItems(kind) {
-  const map = new Map(); // key -> { name, count }
+  const map = new Map(); // key -> { name, count, exCount }
+  const bump = (name, field) => {
+    const k = name.toLowerCase();
+    if (!map.has(k)) map.set(k, { name, count: 0, exCount: 0 });
+    map.get(k)[field]++;
+  };
   if (kind === 'exercise') {
     data.workouts.forEach(w => {
       const seen = new Set();
       w.exercises.forEach(e => {
         const name = e.name.trim(); if (!name) return;
         const k = name.toLowerCase();
-        if (!map.has(k)) map.set(k, { name, count: 0 });
         // count once per workout so "57 times" = 57 sessions
-        if (!seen.has(k)) { map.get(k).count++; seen.add(k); }
+        if (!seen.has(k)) { bump(name, 'count'); seen.add(k); }
       });
     });
+    map.forEach(it => it.tags = exerciseTags(it.name));
   } else {
-    data.workouts.forEach(w => {
-      const name = (w.type || '').trim(); if (!name) return;
-      const k = name.toLowerCase();
-      if (!map.has(k)) map.set(k, { name, count: 0 });
-      map.get(k).count++;
-    });
+    data.workouts.forEach(w => w.tags.forEach(t => bump(t, 'count')));
+    const names = new Set(Object.keys(data.exerciseTags));
+    data.workouts.forEach(w => w.exercises.forEach(e => names.add(e.name.trim().toLowerCase())));
+    names.forEach(n => exerciseTags(n).forEach(t => bump(t, 'exCount')));
   }
-  return [...map.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  return [...map.values()].sort((a, b) => b.count - a.count || b.exCount - a.exCount || a.name.localeCompare(b.name));
 }
 
 function renameLibraryItem(kind, oldName, newName) {
   const from = oldName.trim().toLowerCase();
-  const to = newName.trim();
+  const to = kind === 'exercise' ? newName.trim() : normTag(newName);
   if (!to) return false;
   if (kind === 'exercise') {
     data.workouts.forEach(w => {
@@ -1028,8 +1284,17 @@ function renameLibraryItem(kind, oldName, newName) {
       });
       w.exercises = merged;
     });
+    // carry the tags over; merging into an existing exercise keeps both sets of tags
+    const toKey = to.toLowerCase();
+    if (toKey !== from) {
+      const moved = exerciseTags(oldName);
+      if (moved.length) data.exerciseTags[toKey] = uniqTags([...exerciseTags(to), ...moved]);
+      delete data.exerciseTags[from];
+    }
   } else {
-    data.workouts.forEach(w => { if ((w.type||'').trim().toLowerCase() === from) w.type = to; });
+    const swap = ts => uniqTags(ts.map(t => t.toLowerCase() === from ? to : t));
+    data.workouts.forEach(w => { w.tags = swap(w.tags); });
+    Object.keys(data.exerciseTags).forEach(k => { data.exerciseTags[k] = swap(data.exerciseTags[k]); });
   }
   save();
   return true;
@@ -1039,8 +1304,11 @@ function deleteLibraryItem(kind, name) {
   const key = name.trim().toLowerCase();
   if (kind === 'exercise') {
     data.workouts.forEach(w => { w.exercises = w.exercises.filter(e => e.name.trim().toLowerCase() !== key); });
+    delete data.exerciseTags[key];
   } else {
-    data.workouts.forEach(w => { if ((w.type||'').trim().toLowerCase() === key) w.type = ''; });
+    const drop = ts => ts.filter(t => t.toLowerCase() !== key);
+    data.workouts.forEach(w => { w.tags = drop(w.tags); });
+    Object.keys(data.exerciseTags).forEach(k => { data.exerciseTags[k] = drop(data.exerciseTags[k]); });
   }
   save();
 }
@@ -1059,17 +1327,22 @@ function drawManager(kind, sheet) {
     body.innerHTML = `<div class="card muted center-text">No ${noun}s logged yet.</div>`;
     return;
   }
+  const untagged = kind === 'exercise' ? items.filter(it => !it.tags.length).length : 0;
   const note = kind === 'exercise'
-    ? 'Tap a name to rename it everywhere (misspellings merge into the correct one). Deleting removes that exercise from every workout it appears in.'
-    : 'Tap a name to rename it everywhere. Deleting clears the label from those workouts — the workouts themselves are kept.';
+    ? 'Tap an exercise to rename it or change its workout types (misspellings merge into the correct one). Deleting removes that exercise from every workout it appears in.'
+    : 'Tap a workout type to rename it everywhere. Deleting removes it from workouts and exercises — the workouts themselves are kept.';
+  const sub = it => kind === 'exercise'
+    ? `${it.tags.length ? escapeHtml(it.tags.join(' · ')) : '<span class="tag-missing">No workout type</span>'} · logged ${it.count} time${it.count===1?'':'s'}`
+    : `${it.count} workout${it.count===1?'':'s'} · ${it.exCount} exercise${it.exCount===1?'':'s'}`;
   body.innerHTML = `
     <div class="hint" style="margin:0 4px 12px">${note}</div>
+    ${untagged ? `<div class="hint" style="margin:0 4px 12px;color:var(--orange)">${untagged} exercise${untagged===1?' has':'s have'} no workout type yet.</div>` : ''}
     <div class="list">
       ${items.map(it => `
         <div class="list-row" data-name="${escapeHtml(it.name)}">
           <div class="lr-main">
             <div class="lr-title">${escapeHtml(it.name)}</div>
-            <div class="lr-sub">logged ${it.count} time${it.count===1?'':'s'}</div>
+            <div class="lr-sub">${sub(it)}</div>
           </div>
           <button class="row-del" data-del="${escapeHtml(it.name)}" aria-label="Delete">×</button>
         </div>`).join('')}
@@ -1086,31 +1359,40 @@ function drawManager(kind, sheet) {
 }
 
 function promptRename(kind, name, sheet) {
+  const isEx = kind === 'exercise';
+  const selected = isEx ? exerciseTags(name).slice() : null;
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay center';
   overlay.style.zIndex = '120';
   overlay.innerHTML = `<div class="dialog" style="text-align:left">
-    <h3 style="text-align:center">Rename</h3>
+    <h3 style="text-align:center">${isEx ? 'Edit exercise' : 'Rename'}</h3>
     <p style="text-align:center">Applies to every workout using this name.</p>
     <input class="input" id="rn-val" value="${escapeHtml(name)}" autocomplete="off" />
-    <div class="btn-row">
+    ${isEx ? '<label class="field-label">Workout types</label><div id="rn-tags"></div>' : ''}
+    <div class="btn-row" style="margin-top:18px">
       <button class="btn btn-secondary btn-sm" style="flex:1" id="rn-cancel">Cancel</button>
       <button class="btn btn-primary btn-sm" style="flex:1" id="rn-ok">Save</button>
     </div>
   </div>`;
   document.getElementById('modal-root').appendChild(overlay);
   const input = overlay.querySelector('#rn-val');
-  input.focus();
+  const ok = overlay.querySelector('#rn-ok');
+  if (isEx) {
+    const sync = () => { ok.disabled = !selected.length; };
+    tagPicker(overlay.querySelector('#rn-tags'), selected, { onChange: sync });
+    sync();
+  } else {
+    input.focus();
+  }
   const close = () => overlay.remove();
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.querySelector('#rn-cancel').onclick = close;
-  overlay.querySelector('#rn-ok').onclick = () => {
+  ok.onclick = () => {
     const v = input.value.trim();
     if (!v) { toast('Name cannot be empty'); return; }
-    if (v.toLowerCase() !== name.toLowerCase() || v !== name) {
-      renameLibraryItem(kind, name, v);
-      toast('Renamed');
-    }
+    if (v !== name) renameLibraryItem(kind, name, v);
+    if (isEx) setExerciseTags(v, selected);
+    toast('Saved');
     close();
     drawManager(kind, sheet);
   };
@@ -1119,15 +1401,15 @@ function promptRename(kind, name, sheet) {
 function promptDelete(kind, name, sheet) {
   const items = libraryItems(kind);
   const it = items.find(x => x.name.toLowerCase() === name.toLowerCase());
-  const n = it ? it.count : 0;
+  const n = it ? it.count : 0, m = it ? it.exCount : 0;
   const msg = kind === 'exercise'
     ? `Removes "${name}" from ${n} workout${n===1?'':'s'}. This cannot be undone.`
-    : `Clears the type "${name}" from ${n} workout${n===1?'':'s'}. The workouts are kept.`;
+    : `Removes "${name}" from ${n} workout${n===1?'':'s'} and ${m} exercise${m===1?'':'s'}. The workouts are kept.`;
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay center';
   overlay.style.zIndex = '120';
   overlay.innerHTML = `<div class="dialog">
-    <h3>Delete ${kind === 'exercise' ? 'exercise' : 'type'}?</h3>
+    <h3>Delete ${kind === 'exercise' ? 'exercise' : 'workout type'}?</h3>
     <p>${escapeHtml(msg)}</p>
     <div class="btn-row">
       <button class="btn btn-secondary btn-sm" style="flex:1" id="dl-cancel">Cancel</button>
